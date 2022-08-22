@@ -9,7 +9,8 @@ function App() {
       {/* <Route path="/create" component={ SignIn } />
       <Route path="/login" component={ Login } />
       <Route path="*" component={ NotFound } /> */}
-    </Switch>);
+    </Switch>
+  );
 }
 
 export default App;
