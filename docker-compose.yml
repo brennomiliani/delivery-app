@@ -1,0 +1,39 @@
+version: '3.9'
+services:
+  frontend:
+    build: ./front-end
+    ports:
+      - 3000:3000
+    working_dir: /app-frontend
+    depends_on:
+      - backend
+    command: npm start
+  backend:
+    container_name: app_backend
+    build: ./back-end
+    ports:
+      - 3001:3001
+    working_dir: /app-backend
+    command: npm run dev
+    volumes:
+      - ./backend/src:/app-backend/src
+    depends_on:
+      - db
+    environment:
+      - APP_PORT=3001
+      - JWT_SECRET=jwt_secret
+      # Os dados abaixo se referem ao container `db`
+      # Dica: Relembre aqui da comunicação interna entre containers
+      - DB_USER=root
+      - DB_PASS=123456
+      - DB_HOST=db
+      - DB_PORT=3306
+  db:
+    image: mysql:8.0.21
+    container_name: db
+    platform: linux/x86_64
+    ports:
+      - 3002:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    restart: 'always'
