@@ -8,7 +8,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     name: DataTypes.STRING,
     price: DataTypes.DECIMAL(4, 2),
-    urlImage: DataTypes.INTEGER,
+    urlImage: {
+      type: DataTypes.INTEGER,
+      field: 'url_image'
+    },
   },
     {
       tableName: 'Products',

@@ -6,8 +6,14 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       type: DataTypes.INTEGER,
     },
-    userId: DataTypes.INTEGER,
-    sellerId: DataTypes.INTEGER,
+    userId: {
+      type: DataTypes.INTEGER,
+      field: 'user_id',
+    },
+    sellerId: {
+      type: DataTypes.INTEGER,
+      field: 'seller_id',
+    },
     totalPrice: DataTypes.DECIMAL(9, 2),
     deliveryAddress: DataTypes.STRING(255),
     deliveryNumber: DataTypes.STRING(255),
