@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 // import { useHistory } from 'react-router-dom';
+import { saveUser } from '../redux/actions/index';
 
 const INITIAL_STATE = {
   inputName: '',
@@ -9,11 +11,16 @@ const INITIAL_STATE = {
 
 function SignIn() {
   const [userData, setUserData] = useState(INITIAL_STATE);
+  const dispatch = useDispatch();
   // const history = useHistory();
 
   const handleInput = ({ target: { name, value } }) => {
     setUserData((prev) => ({ ...prev, [name]: value }));
   };
+
+  const handleClick = () => {
+    dispatch(saveUser(inputEmail));
+  }
 
   const { inputName, inputEmail, inputPassword } = userData;
 
@@ -54,7 +61,7 @@ function SignIn() {
         <button
           type="button"
           className="button-general button--flex"
-          // onClick={ handleClick }
+          onClick={ handleClick }
         >
           Cadastrar
         </button>
