@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 // import { useHistory } from 'react-router-dom';
+import verifyValidation from '../validations/validateUser';
 import { saveUser } from '../redux/actions/index';
 
 const INITIAL_STATE = {
@@ -11,6 +12,7 @@ const INITIAL_STATE = {
 
 function SignIn() {
   const [userData, setUserData] = useState(INITIAL_STATE);
+  const [isDisabled, setIsDisabled] = useState(true);
   const dispatch = useDispatch();
   // const history = useHistory();
 
@@ -21,6 +23,10 @@ function SignIn() {
   const handleClick = () => {
     dispatch(saveUser(userData.inputEmail));
   };
+
+  useEffect(() => {
+    setIsDisabled(!verifyValidation(userData));
+  }, [userData]);
 
   const { inputName, inputEmail, inputPassword } = userData;
 
@@ -36,13 +42,15 @@ function SignIn() {
       <section>
         <input
           type="text"
+          data-testid="common_register__input-name"
           onChange={ handleInput }
           value={ inputName }
           name="inputName"
-          placeholder="Nome (mínimo 6 caracteres)"
+          placeholder="Nome Completo(mínimo 12 caracteres)"
         />
         <input
           type="text"
+          data-testid="common_register__input-email"
           onChange={ handleInput }
           value={ inputEmail }
           name="inputEmail"
@@ -50,6 +58,7 @@ function SignIn() {
         />
         <input
           type="password"
+          data-testid="common_register__input-password"
           onChange={ handleInput }
           value={ inputPassword }
           name="inputPassword"
@@ -60,18 +69,13 @@ function SignIn() {
       <div className="section-btns">
         <button
           type="button"
+          data-testid="common_register__button-register"
           className="button-general button--flex"
           onClick={ handleClick }
+          disabled={ isDisabled }
         >
           Cadastrar
         </button>
-        {/* <button
-              type="button"
-              className='button-general button--flex'
-              // onClick={ () => history.push('/') }
-          >
-          Voltar
-          </button> */}
       </div>
     </div>
   );
