@@ -1,5 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
-import loginService from '../services/loginService';
+import loginService from '../services/LoginService';
 
 const findUser = async (req, res) => {
   const token = await loginService.findUser(req.body);
