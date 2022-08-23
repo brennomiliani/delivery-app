@@ -2,12 +2,12 @@ module.exports = {
   up: async (queryInterface) => {
     await queryInterface.bulkInsert('Sales', [
       {
-        userId: 3,
-        sellerId: 2,
-        totalPrice: 4.69,
-        deliveryAddress: 'Rua Cachaça 51, Bairro Tequila',
-        deliveryNumber: '+553199120-2020',
-        saleDate: new Date('2022-08-01T19:58:00.000Z'),
+        user_id: 3,
+        seller_id: 2,
+        total_price: 4.69,
+        delivery_address: 'Rua Cachaça 51, Bairro Tequila',
+        delivery_number: '+553199120-2020',
+        sale_date: new Date('2022-08-01T19:58:00.000Z'),
         status: 'Pendente'
       },
     ], {});
