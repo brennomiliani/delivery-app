@@ -14,16 +14,29 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       field: 'seller_id',
     },
-    totalPrice: DataTypes.DECIMAL(9, 2),
-    deliveryAddress: DataTypes.STRING(255),
-    deliveryNumber: DataTypes.STRING(255),
-    saleDate: DataTypes.DATE,
-    status: DataTypes.STRING(255),
+    totalPrice: {
+      type: DataTypes.DECIMAL(9, 2),
+      field: 'total_price'
+    },
+    deliveryAddress: {
+      type: DataTypes.STRING(255),
+      field: 'delivery_address'
+    },
+    deliveryNumber: {
+      type: DataTypes.STRING(255),
+      field: 'delivery_number'
+    },
+    saleDate: {
+      type: DataTypes.DATE,
+      field: 'sale_date'
+    },
+    status: {
+      type: DataTypes.STRING(255),
+    },
   },
     {
       tableName: 'Sales',
       timestamps: false,
-      underscored: true,
     });
 
   Sale.associate = (models) => {
