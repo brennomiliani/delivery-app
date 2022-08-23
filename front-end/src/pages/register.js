@@ -19,8 +19,8 @@ function SignIn() {
   };
 
   const handleClick = () => {
-    dispatch(saveUser(inputEmail));
-  }
+    dispatch(saveUser(userData.inputEmail));
+  };
 
   const { inputName, inputEmail, inputPassword } = userData;
 
