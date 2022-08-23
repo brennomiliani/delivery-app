@@ -1,13 +1,18 @@
 module.exports = (sequelize, DataTypes) => {
   const SaleProduct = sequelize.define('SaleProduct', {
-    saleId: DataTypes.INTEGER,
-    productId: DataTypes.INTEGER,
+    sale_id: {
+      type: DataTypes.INTEGER,
+      field: 'sale_id'
+    },
+    productId: {
+      type: DataTypes.INTEGER,
+      field: 'product_id'
+    },
     quantity: DataTypes.INTEGER,
   },
     {
       tableName: 'SalesProducts',
       timestamps: false,
-      underscored: true,
     });
 
   SaleProduct.associate = (models) => {
