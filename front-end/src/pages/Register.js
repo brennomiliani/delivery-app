@@ -76,10 +76,10 @@ function SignIn() {
       </section>
 
       <span
-          data-testid="common_register__element-invalid_register"
-          style={ { display: !alreadyCreated && 'none' } }
-        >
-          O usuário já possui cadastro!
+        data-testid="common_register__element-invalid_register"
+        style={ { display: !alreadyCreated && 'none' } }
+      >
+        O usuário já possui cadastro!
       </span>
 
       <div className="section-btns">

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import verifyValidation from '../validations/validateUser';
+
 const INITIAL_STATE = {
   inputEmail: '',
   inputPassword: '',

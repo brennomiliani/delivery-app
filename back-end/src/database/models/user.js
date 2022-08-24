@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
+  const User = sequelize.define('user', {
     id: {
       allowNull: false,
       primaryKey: true,
@@ -12,9 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     role: DataTypes.STRING(255),
   },
     {
-      tableName: 'Users',
+      tableName: 'users',
       timestamps: false,
-      underscored: true,
     });
 
   User.associate = (models) => {

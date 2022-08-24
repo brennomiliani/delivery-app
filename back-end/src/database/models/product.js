@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Product = sequelize.define('Product', {
+  const Product = sequelize.define('product', {
     id: {
       allowNull: false,
       primaryKey: true,
@@ -8,10 +8,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     name: DataTypes.STRING,
     price: DataTypes.DECIMAL(4, 2),
-    urlImage: DataTypes.INTEGER,
+    urlImage: {
+      type: DataTypes.INTEGER,
+      field: 'url_image'
+    },
   },
     {
-      tableName: 'Products',
+      tableName: 'products',
       timestamps: false,
       underscored: true,
     });
