@@ -1,20 +1,21 @@
-import { StatusCodes } from 'http-status-codes';
-import User from '../database/models/user';
-import HttpException from '../shared/HttpException';
-import { generateJWTToken } from '../shared/JTWHelpers';
+// import { StatusCodes } from 'http-status-codes';
+const { generateJWTToken } = require('../shared/JTWHelpers');
 
-const findUser = async (user) => {
-  const { email, password } = user;
+const HttpException = require('../shared/HttpException');
+
+const { User } = require('../database/models');
+
+const findUser = async ({ email, password }) => {
   if (!email || !password) {
     throw new HttpException(
-      StatusCodes.BAD_REQUEST,
+      400,
       'All fields must be filled',
     );
   }
   const userFound = await User.findOne({ where: { email, password } });
   if (!userFound) {
     throw new HttpException(
-      StatusCodes.UNAUTHORIZED,
+      400,
       'Incorrect email or password',
     );
   }
@@ -23,6 +24,6 @@ const findUser = async (user) => {
   return token;
 };
 
-export default {
+module.exports = {
   findUser,
 };

@@ -1,9 +1,9 @@
-import { StatusCodes } from 'http-status-codes';
-import loginService from '../services/LoginService';
+// const { StatusCodes } = require('http-status-codes');
+const loginService = require('../services/LoginService');
 
 const findUser = async (req, res) => {
   const token = await loginService.findUser(req.body);
-  return res.status(StatusCodes.OK).json({ token });
+  res.status(200).json({ token });
 };
 
-export default { findUser };
+module.exports = { findUser };

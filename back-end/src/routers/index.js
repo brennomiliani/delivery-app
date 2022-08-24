@@ -1,8 +1,11 @@
-import { Router } from 'express';
-import LoginRouter from './loginRouter';
+const { Router } = require('express');
+require('dotenv').config();
+const LoginRouter = require('./loginRouter');
+
+require('express');
 
 const indexRouter = Router();
 
 indexRouter.use('/login', LoginRouter);
 
-export default indexRouter;
+module.exports = indexRouter;
