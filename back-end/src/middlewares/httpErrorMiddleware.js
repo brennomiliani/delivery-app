@@ -4,4 +4,4 @@ const httpErrorMiddleware = (err, _req, res, next) => {
   next();
 };
 
-export default httpErrorMiddleware;
+module.exports = httpErrorMiddleware;
