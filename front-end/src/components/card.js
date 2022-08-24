@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { convertedValue } from '../services/utils';
 
 const Card = (product) => {
-  const  { name, price, url_image, id, index } = product;
+  const  { name, price, url_image, index } = product;
   const [valueAdd, setValueAdd] = useState(0);
-  const history = useHistory();
-
-  const saveStock = (path) => {
-    return history.push(path);
-  }
 
   return (
     <div className="card_data">
@@ -22,10 +16,10 @@ const Card = (product) => {
             onClick={() => setValueAdd((valueAdd - 1))}>
             -
           </button>
-          <input type='text'>{ valueAdd }</input>
+          <input type='text' data-testid={`customer_products__input-card-quantity-${index}`}>{ valueAdd }</input>
           <button className="button--small"
             data-testid={`customer_products__button-card-add-item-${index}`}
-            onClick={() => setValueAdd((valueAdd - 1))}>
+            onClick={() => setValueAdd((valueAdd + 1))}>
             +
           </button>
         </div>
