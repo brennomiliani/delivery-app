@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface) => {
-    await queryInterface.bulkInsert('Sales', [
+    await queryInterface.bulkInsert('sales', [
       {
         user_id: 3,
         seller_id: 2,
@@ -14,6 +14,6 @@ module.exports = {
   },
 
   down: async (queryInterface) => {
-    await queryInterface.bulkDelete('Sales', null, {});
+    await queryInterface.bulkDelete('sales', null, {});
   },
 };

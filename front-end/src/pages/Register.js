@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { useDispatch } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import verifyValidation from '../validations/validateUser';
 import { saveUser } from '../redux/actions/index';
 
 const INITIAL_STATE = {
@@ -11,16 +13,29 @@ const INITIAL_STATE = {
 
 function SignIn() {
   const [userData, setUserData] = useState(INITIAL_STATE);
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [alreadyCreated, setAlreadyCreated] = useState(false);
   const dispatch = useDispatch();
-  // const history = useHistory();
+  const history = useHistory();
 
   const handleInput = ({ target: { name, value } }) => {
     setUserData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
     dispatch(saveUser(userData.inputEmail));
+    try {
+      await axios.post('http://localhost:3001/register', userData);
+      history.push('/customer/products');
+    } catch (error) {
+      console.log(error);
+      setAlreadyCreated(true);
+    }
   };
+
+  useEffect(() => {
+    setIsDisabled(!verifyValidation(userData));
+  }, [userData]);
 
   const { inputName, inputEmail, inputPassword } = userData;
 
@@ -36,13 +51,15 @@ function SignIn() {
       <section>
         <input
           type="text"
+          data-testid="common_register__input-name"
           onChange={ handleInput }
           value={ inputName }
           name="inputName"
-          placeholder="Nome (mínimo 6 caracteres)"
+          placeholder="Nome Completo(mínimo 12 caracteres)"
         />
         <input
           type="text"
+          data-testid="common_register__input-email"
           onChange={ handleInput }
           value={ inputEmail }
           name="inputEmail"
@@ -50,6 +67,7 @@ function SignIn() {
         />
         <input
           type="password"
+          data-testid="common_register__input-password"
           onChange={ handleInput }
           value={ inputPassword }
           name="inputPassword"
@@ -57,21 +75,23 @@ function SignIn() {
         />
       </section>
 
+      <span
+        data-testid="common_register__element-invalid_register"
+        style={ { display: !alreadyCreated && 'none' } }
+      >
+        O usuário já possui cadastro!
+      </span>
+
       <div className="section-btns">
         <button
           type="button"
+          data-testid="common_register__button-register"
           className="button-general button--flex"
           onClick={ handleClick }
+          disabled={ isDisabled }
         >
           Cadastrar
         </button>
-        {/* <button
-              type="button"
-              className='button-general button--flex'
-              // onClick={ () => history.push('/') }
-          >
-          Voltar
-          </button> */}
       </div>
     </div>
   );

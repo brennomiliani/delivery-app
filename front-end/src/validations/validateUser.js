@@ -5,11 +5,12 @@ const verifyValidation = (info) => {
 
   if (info.inputName) {
     return (inputPassword.length >= MIN_LETTERS
-      && info.inputName.length >= MIN_LETTERS
-      && rgx.test(inputEmail));
+        && info.inputName.length >= (MIN_LETTERS * 2)
+        && rgx.test(inputEmail));
   }
   return (inputPassword.length >= MIN_LETTERS
-    && rgx.test(inputEmail));
+      && rgx.test(inputEmail)
+  );
 };
 
 export default verifyValidation;
