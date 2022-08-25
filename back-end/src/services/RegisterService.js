@@ -17,9 +17,9 @@ const create = async ({ name, email, password }) => {
   }
 
   // const secret = 'segredo muito dificil';
-  const hashPassword = crypto.createHmac('md5').update(password).digest('hex');
+  const hashPassword = crypto.createHash('md5').update(password).digest("hex"); 
 
-  const userCreated = await User.create({ name, email, hashPassword, role: 'customer' });
+  const userCreated = await User.create({ name, email, password: hashPassword, role: 'customer' });
   return userCreated;
 };
 
