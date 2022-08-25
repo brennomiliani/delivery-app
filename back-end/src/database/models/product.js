@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Product = sequelize.define('Product', {
+  const Product = sequelize.define('product', {
     id: {
       allowNull: false,
       primaryKey: true,
@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   },
     {
-      tableName: 'Products',
+      tableName: 'products',
       timestamps: false,
       underscored: true,
     });
