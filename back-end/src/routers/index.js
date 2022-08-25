@@ -4,7 +4,6 @@ const LoginRouter = require('./loginRouter');
 const CustomerRouter = require('./customerRouter'); 
 const RegisterRouter = require('./registerRouter');
 
-
 require('express');
 
 const indexRouter = Router();
