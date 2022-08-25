@@ -20,8 +20,8 @@ function Login() {
 
   const handleClick = async () => {
     try {
-      await axios.post('http://localhost:3000/login', userData);
-      history.push('/customer/products');
+      await axios.post('http://localhost:3001/login', userData);
+      history.push('/seller/orders');
     } catch (error) {
       setAlreadyCreated(true);
     }
