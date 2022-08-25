@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 import verifyValidation from '../validations/validateUser';
 
 const INITIAL_STATE = {
@@ -11,13 +12,19 @@ function Login() {
   const history = useHistory();
   const [userData, setUserData] = useState(INITIAL_STATE);
   const [buttonData, setButtonData] = useState(true);
+  const [alreadyCreated, setAlreadyCreated] = useState(false);
 
   const handleInput = ({ target: { name, value } }) => {
     setUserData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleClick = async () => {
-    history.push('/products');
+    try {
+      await axios.post('http://localhost:3000/login', userData);
+      history.push('/customer/products');
+    } catch (error) {
+      setAlreadyCreated(true);
+    }
   };
 
   useEffect(() => {
@@ -62,6 +69,12 @@ function Login() {
         >
           Criar Conta
         </button>
+        <span
+          data-testid="common_login__element-invalid_email"
+          style={ { display: !alreadyCreated && 'none' } }
+        >
+          Usuário não cadastrado!
+        </span>
       </form>
     </div>
   );
