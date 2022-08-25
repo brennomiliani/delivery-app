@@ -18,9 +18,12 @@ function Login() {
     setUserData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const { inputEmail, inputPassword } = userData;
+
   const handleClick = async () => {
     try {
-      await axios.post('http://localhost:3001/login', userData);
+      const response = await axios.post('http://localhost:3001/login', { email: inputEmail, password: inputPassword });
+      console.log(response);
       history.push('/seller/orders');
     } catch (error) {
       setAlreadyCreated(true);
@@ -30,8 +33,6 @@ function Login() {
   useEffect(() => {
     setButtonData(!verifyValidation(userData));
   }, [userData]);
-
-  const { inputEmail, inputPassword } = userData;
 
   return (
     <div>
@@ -55,7 +56,7 @@ function Login() {
           onChange={ handleInput }
         />
         <button
-          type="submit"
+          type="button"
           data-testid="common_login__button-login"
           disabled={ buttonData }
           onClick={ handleClick }
