@@ -1,4 +1,4 @@
-const { User, Sales } = require('../database/models');
+const { User, Sale } = require('../database/models');
 
 const findUser = async (email) => {
   const user = await User.findOne({ where: { email }});
@@ -10,8 +10,8 @@ const findUser = async (email) => {
 };
 
 const getAllSales = async (email) => {
-  const id = findUser(email);
-  const sales = Sales.findAll({ where: { sellerId: id }});
+  const id = await findUser(email);
+  const sales = await Sale.findAll({ where: { sellerId: id }});
   if (!sales) throw new HttpException(
     400,
     'No Sales Registered ',
