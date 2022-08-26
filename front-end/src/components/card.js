@@ -9,16 +9,17 @@ function Card(product) {
     <div className="card_data">
       <h3
         className="card_title"
-        data-testId={ `customer_products__element-card-title-${index}` }
+        data-testid={ `customer_products__element-card-title-${index}` }
       >
         { name }
       </h3>
-      <p
+      <img
+        src={ urlImg }
+        alt={ name }
+        style={ { height: '20%', width: '20%' } }
         className="card_description"
         data-testid={ `customer_products__img-card-bg-image-${index}` }
-      >
-        { urlImg }
-      </p>
+      />
       <p
         className="card_description"
         data-testid={ `customer_products__element-card-price-${index}` }

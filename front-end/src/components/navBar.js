@@ -5,28 +5,37 @@ function NavBar() {
   return (
     <nav className="nav container">
       <div className="nav_menu" id="nav-menu">
-        <ul className="nav_list grid">
-          <li className="nav_item" onClick={ addNavBar }>
-            <Link to="/login" />
+        <div className="nav_list grid">
+          <span className="nav_item">
+            <Link
+              to="/customer/products"
+              data-testid="customer_products__element-navbar-link-products"
+            />
             Produtos
-          </li>
+          </span>
 
-          <li className="nav_item" onClick={ addNavBar }>
-            <Link to="/account" />
-            Pedidos
-          </li>
-        </ul>
-        <ul className="nav_list grid">
-          <li className="nav_item" onClick={ addNavBar }>
-            <Link to="/wallet" />
-            {}
-          </li>
+          <span className="nav_item">
+            <Link
+              to="/customer/orders"
+              data-testid="customer_products__element-navbar-link-orders"
+            />
+            Meus pedidos
+          </span>
+        </div>
+        <div />
+        <div className="nav_list grid">
+          <span
+            className="nav_item"
+            data-testid="customer_products__element-navbar-user-fdiv -name"
+          >
+            Lilian Admin
+          </span>
 
-          <li className="nav_item" onClick={ addNavBar }>
-            <Link to="/historic" />
+          <span className="nav_item">
+            <Link to="/" data-testid="customer_products__element-navbar-link-logout" />
             Sair
-          </li>
-        </ul>
+          </span>
+        </div>
       </div>
     </nav>
   );
