@@ -29,9 +29,9 @@ function NavBar() {
         <div className="nav_list grid">
           <span
             className="nav_item"
-            data-testid="customer_products__element-navbar-user-fdiv -name"
+            data-testid="customer_products__element-navbar-user-full-name"
           >
-            { user && user.name }
+            { user ? user.name : ''}
           </span>
 
           <span className="nav_item">

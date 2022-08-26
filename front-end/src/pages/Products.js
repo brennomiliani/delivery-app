@@ -40,8 +40,8 @@ function Products() {
         : (
           <section>
             <div>
-              { products.map((item, index) => (
-                <Card key={ index } { ...item } />))}
+              { products.map((item) => (
+                <Card key={ item.id } { ...item } />))}
             </div>
           </section>)}
     </div>
