@@ -4,6 +4,7 @@ const { Op } = require('sequelize');
 const crypto = require('crypto');
 const HttpException = require('../shared/HttpException');
 const { User } = require('../database/models');
+const { generateJWTToken } = require('../shared/JTWHelpers');
 
 const findUsers = async () => {
   const users = await User.findAll();
@@ -17,10 +18,11 @@ const create = async ({ name, email, password }) => {
   }
 
   // const secret = 'segredo muito dificil';
-  const hashPassword = crypto.createHmac('md5').update(password).digest('hex');
+  const hashPassword = crypto.createHash('md5').update(password).digest('hex');
 
-  const userCreated = await User.create({ name, email, hashPassword, role: 'customer' });
-  return userCreated;
+  await User.create({ name, email, password: hashPassword, role: 'customer' });
+  const token = generateJWTToken({ name, email, role: 'customer' });
+  return { token, role: 'customer' };
 };
 
 module.exports = {

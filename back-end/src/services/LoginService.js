@@ -16,13 +16,13 @@ const findUser = async ({ email, password }) => {
   const userFound = await User.findOne({ where: { email, password: hash } });
   if (!userFound) {
     throw new HttpException(
-      400,
+      404,
       'Incorrect email or password',
     );
   }
   const { name, role } = userFound;
   const token = generateJWTToken({ name, email, role });
-  return token;
+  return { token, role };
 };
 
 module.exports = {

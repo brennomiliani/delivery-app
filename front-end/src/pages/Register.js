@@ -24,12 +24,14 @@ function SignIn() {
 
   const handleClick = async () => {
     dispatch(saveUser(userData.inputEmail));
+    const { inputEmail, inputName, inputPassword } = userData;
     try {
-      await axios.post('http://localhost:3001/register', userData);
+      await axios.post('http://localhost:3001/register', { name: inputName, email: inputEmail, password: inputPassword });
       history.push('/customer/products');
     } catch (error) {
       console.log(error);
       setAlreadyCreated(true);
+      setUserData(INITIAL_STATE);
     }
   };
 
