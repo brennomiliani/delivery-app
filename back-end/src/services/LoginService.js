@@ -15,7 +15,7 @@ const findUser = async ({ email, password }) => {
   const userFound = await User.findOne({ where: { email, password } });
   if (!userFound) {
     throw new HttpException(
-      400,
+      404,
       'Incorrect email or password',
     );
   }

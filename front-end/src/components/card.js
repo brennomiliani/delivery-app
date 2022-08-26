@@ -35,12 +35,12 @@ function Card(product) {
         >
           -
         </button>
-        <p
+        <input
           type="text"
           data-testid={ `customer_products__input-card-quantity-${index}` }
-        >
-          { valueAdd }
-        </p>
+          value={ valueAdd }
+          onChange={ () => setValueAdd((valueAdd)) }
+        />
         <button
           type="button"
           className="button--small"
