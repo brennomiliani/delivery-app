@@ -22,7 +22,7 @@ const create = async ({ name, email, password }) => {
 
   await User.create({ name, email, password: hashPassword, role: 'customer' });
   const token = generateJWTToken({ name, email, role: 'customer' });
-  return { token, role };
+  return { token, role: 'customer' };
 };
 
 module.exports = {
