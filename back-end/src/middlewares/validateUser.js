@@ -4,7 +4,7 @@ const registerObjValid = Joi.object({
 name: Joi.string().required().min(12),
 password: Joi.string().min(6).required(),
 email: Joi.string()
-  .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required(),
+  .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'br'] } }).required(),
 });
 
 const validateRegisterMiddleware = (req, res, next) => {
