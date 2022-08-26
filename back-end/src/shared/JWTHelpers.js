@@ -1,5 +1,5 @@
-import * as jwt from 'jsonwebtoken';
-import HttpException from './HttpException';
+const jwt = require('jsonwebtoken');
+const HttpException = require('./HttpException');
 
 const jwtSecret = process.env.JWT_SECRET || 'secret_key';
 
@@ -23,7 +23,7 @@ const authenticateJWTToken = async (token) => {
   }
 };
 
-export {
+module.exports = {
   generateJWTToken,
   authenticateJWTToken,
 };
