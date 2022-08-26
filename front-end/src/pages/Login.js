@@ -23,11 +23,12 @@ function Login() {
   const handleClick = async () => {
     try {
       const response = await axios.post('http://localhost:3001/login', { email: inputEmail, password: inputPassword });
-      console.log(response);
+      if (response.data.role === 'customer') return history.push('/customer/products');
+      if (response.data.role === 'administrator') return history.push('/admin/manage');
       history.push('/seller/orders');
     } catch (error) {
-      setAlreadyCreated(true);
       setUserData(INITIAL_STATE);
+      setAlreadyCreated(true);
     }
   };
 
@@ -72,7 +73,7 @@ function Login() {
           Criar Conta
         </button>
         <span
-          data-testid="common_login__element-invalid_email"
+          data-testid="common_login__element-invalid-email"
           style={ { display: !alreadyCreated && 'none' } }
         >
           Usuário não cadastrado!
