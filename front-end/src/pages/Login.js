@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import verifyValidation from '../validations/validateUser';
+import { addAcessUserToLocal } from '../services/localStorage';
 
 const INITIAL_STATE = {
   inputEmail: '',
@@ -25,6 +26,11 @@ function Login() {
       const response = await axios.post('http://localhost:3001/login', { email: inputEmail, password: inputPassword });
       if (response.data.role === 'customer') return history.push('/customer/products');
       if (response.data.role === 'administrator') return history.push('/admin/manage');
+      addAcessUserToLocal({
+        name: response.data.name,
+        email: inputEmail,
+        role: response.data.role,
+        token: response.data.token });
       history.push('/seller/orders');
     } catch (error) {
       setUserData(INITIAL_STATE);
