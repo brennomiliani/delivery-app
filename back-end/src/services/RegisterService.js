@@ -18,11 +18,11 @@ const create = async ({ name, email, password }) => {
   }
 
   // const secret = 'segredo muito dificil';
-  const hashPassword = crypto.createHash('md5').update(password).digest('hex'); 
+  const hashPassword = crypto.createHash('md5').update(password).digest('hex');
 
   await User.create({ name, email, password: hashPassword, role: 'customer' });
   const token = generateJWTToken({ name, email, role: 'customer' });
-  return { token, role };
+  return { token, role: 'customer' };
 };
 
 module.exports = {
