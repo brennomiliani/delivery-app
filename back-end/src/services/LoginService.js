@@ -1,8 +1,8 @@
 // import { StatusCodes } from 'http-status-codes';
+const md5 = require('md5');
 const { generateJWTToken } = require('../shared/JTWHelpers');
 
 const HttpException = require('../shared/HttpException');
-
 const { User } = require('../database/models');
 
 const findUser = async ({ email, password }) => {
@@ -12,7 +12,8 @@ const findUser = async ({ email, password }) => {
       'All fields must be filled',
     );
   }
-  const userFound = await User.findOne({ where: { email, password } });
+  const hash = md5(password);
+  const userFound = await User.findOne({ where: { email, password: hash } });
   if (!userFound) {
     throw new HttpException(
       404,

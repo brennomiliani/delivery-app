@@ -72,7 +72,7 @@ function Login() {
           Criar Conta
         </button>
         <span
-          data-testid="common_login__element-invalid-email"
+          data-testid="common_login__element-invalid_email"
           style={ { display: !alreadyCreated && 'none' } }
         >
           Usuário não cadastrado!
@@ -81,4 +81,5 @@ function Login() {
     </div>
   );
 }
+
 export default Login;
