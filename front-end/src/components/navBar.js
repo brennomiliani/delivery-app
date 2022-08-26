@@ -1,7 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 function NavBar() {
+  const user = useSelector((state) => state.user);
+
   return (
     <nav className="nav container">
       <div className="nav_menu" id="nav-menu">
@@ -28,7 +31,7 @@ function NavBar() {
             className="nav_item"
             data-testid="customer_products__element-navbar-user-fdiv -name"
           >
-            Lilian Admin
+            { user && user.name }
           </span>
 
           <span className="nav_item">
