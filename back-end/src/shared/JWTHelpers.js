@@ -1,7 +1,16 @@
-import * as jwt from 'jsonwebtoken';
-import HttpException from './HttpException';
+const jwt = require('jsonwebtoken');
+const fs = require('fs').promises;
 
-const jwtSecret = process.env.JWT_SECRET || 'secret_key';
+const HttpException = require('./HttpException');
+
+let jwtSecret = null;
+
+const readJWTKey = async () => {
+  const JWT_SECRET = await fs.readFile('./jwt.evaluation.key', 'utf-8');
+  jwtSecret = JWT_SECRET;
+};
+
+readJWTKey();
 
 const jwtDefaultConfig = {
   expiresIn: '24h',
@@ -23,7 +32,7 @@ const authenticateJWTToken = async (token) => {
   }
 };
 
-export {
+module.exports = {
   generateJWTToken,
   authenticateJWTToken,
 };
