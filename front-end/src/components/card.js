@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import convertedValue from '../services/utils';
 
 function Card(product) {
   const { name, price, url_image: urlImage, id } = product;
   const [valueAdd, setValueAdd] = useState(0);
+  const dispatch = useDispatch();
+  const { products } = useSelector(state => state.wallet);
+
+  useEffect(() => {
+    if () {
+      
+    }
+  }, [])
+  
 
   return (
     <div className="card_data">
@@ -31,6 +41,7 @@ function Card(product) {
           type="button"
           className="button--small button-color-general"
           data-testid={ `customer_products__button-card-rm-item-${id}` }
+          disabled={ valueAdd > 0 ? false: true }
           onClick={ () => setValueAdd((valueAdd - 1)) }
         >
           -
@@ -38,14 +49,13 @@ function Card(product) {
         <input
           type="text"
           data-testid={ `customer_products__input-card-quantity-${id}` }
-          value={ valueAdd }
+          value={ valueAdd > 0 ? valueAdd : 0 }
           onChange={ () => setValueAdd((valueAdd)) }
         />
         <button
           type="button"
           className="button--small"
           data-testid={ `customer_products__button-card-add-item-${id}` }
-          disable={ valueAdd > 0 ? false: true }
           onClick={ () => setValueAdd((valueAdd + 1)) }
         >
           +
