@@ -1,2 +1,3 @@
 export const SET_USER_INFOS = 'SET_USER_INFOS';
 export const DISABLE_BUTTON = 'DISABLE_BUTTON';
+export const SET_SHOP_CART = 'SET_SHOP_CART';

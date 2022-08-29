@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import convertedValue from '../services/utils';
 
 function Card(product) {
-  const { name, price, urlImage, id } = product;
+  const { name, price, url_image: urlImage, id } = product;
   const [valueAdd, setValueAdd] = useState(0);
 
   return (

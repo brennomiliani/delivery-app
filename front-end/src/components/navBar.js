@@ -1,9 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 function NavBar() {
   const user = useSelector((state) => state.user);
+  const history = useHistory();
+
+  const logout = () => {
+    localStorage.clear();
+    history.push('/');
+  }
 
   return (
     <nav className="nav container">
@@ -34,10 +40,13 @@ function NavBar() {
             { user ? user.name : ''}
           </span>
 
-          <span className="nav_item">
-            <Link to="/" data-testid="customer_products__element-navbar-link-logout" />
+          <button
+            type='button'
+            onClick={ () => logout() }
+            className="nav_item"
+            data-testid="customer_products__element-navbar-link-logout">
             Sair
-          </span>
+          </button>
         </div>
       </div>
     </nav>
