@@ -6,4 +6,12 @@ const getAll = async (_req, res) => {
   return res.status(StatusCodes.OK).json(result);
 };
 
-module.exports = { getAll };
+const checkout = async (req, res) => {
+  const id = await customerService.checkout(req.body);
+  return res.status(StatusCodes.OK).json({ id });
+};
+
+module.exports = {
+  getAll,
+  checkout,
+};
