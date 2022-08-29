@@ -10,4 +10,4 @@ const authenticationMiddleware = async (req, res, next) => {
   next();
 };
 
-module.exports = { authenticationMiddleware };
+module.exports = authenticationMiddleware;
