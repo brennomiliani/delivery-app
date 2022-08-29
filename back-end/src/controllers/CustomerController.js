@@ -6,4 +6,9 @@ const getAll = async (_req, res) => {
   return res.status(StatusCodes.OK).json(result);
 };
 
-module.exports = { getAll };
+const getById = async (req, res) => {
+  const result = await customerService.getOrderById(req.params);
+  return res.status(StatusCodes.OK).json(result);
+};
+
+module.exports = { getAll, getById };
