@@ -6,9 +6,9 @@ export const setUserAcessToLocal = (newUser) => localStorage
 export const addAcessUserToLocal = (user) => {
   if (!JSON.parse(localStorage.getItem('user'))) {
     localStorage.setItem('user', JSON
-      .stringify({ name: '' }));
+      .stringify({ user: { name: ''} }));
   }
   if (user) {
-    setUserAcessToLocal(user);
+    setUserAcessToLocal({ user });
   }
 };
