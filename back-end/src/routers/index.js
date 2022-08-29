@@ -12,6 +12,6 @@ const indexRouter = Router();
 indexRouter.use('/login', LoginRouter);
 indexRouter.use('/customer', CustomerRouter);
 indexRouter.use('/register', RegisterRouter);
-indexRouter.use('/seller/orders', SellerRouter)
+indexRouter.use('/seller/orders', SellerRouter);
 
 module.exports = indexRouter;
