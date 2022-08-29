@@ -4,7 +4,7 @@ const { Op } = require('sequelize');
 const crypto = require('crypto');
 const HttpException = require('../shared/HttpException');
 const { User } = require('../database/models');
-const { generateJWTToken } = require('../shared/JTWHelpers');
+const { generateJWTToken } = require('../shared/JWTHelpers');
 
 const findUsers = async () => {
   const users = await User.findAll();

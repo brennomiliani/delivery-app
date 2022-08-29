@@ -1,6 +1,6 @@
 // import { StatusCodes } from 'http-status-codes';
 const md5 = require('md5');
-const { generateJWTToken } = require('../shared/JTWHelpers');
+const { generateJWTToken } = require('../shared/JWTHelpers');
 
 const HttpException = require('../shared/HttpException');
 const { User } = require('../database/models');
@@ -22,6 +22,7 @@ const findUser = async ({ email, password }) => {
   }
   const { name, role } = userFound;
   const token = generateJWTToken({ name, email, role });
+
   return { token, role };
 };
 

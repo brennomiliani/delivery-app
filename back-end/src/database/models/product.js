@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     name: DataTypes.STRING,
     price: DataTypes.DECIMAL(4, 2),
-    urlImage: {
+    url_image: {
       type: DataTypes.INTEGER,
       field: 'url_image'
     },
@@ -19,9 +19,8 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true,
     });
 
-  // Product.associate = (models) => {
-  //  Product.belongsTo(models.SaleProduct, { foreignKey: 'productId', as: 'products' });
-  // };
-
+  Product.associate = (models) => {
+    // Product.belongsTo(models.SaleProduct, { foreignKey: 'productId', as: 'products' });
+  };
   return Product;
 }; 
