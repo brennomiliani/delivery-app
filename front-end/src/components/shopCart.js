@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import convertedValue from '../services/utils';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 function ShopCart() {
     const [shopCartValue, setShopCartValue] = useState(convertedValue(0));
-    const { shopCartValue } = useSelector(state => walletReducer);
+    const shopCart = useSelector(state => state.wallet);
     const history = useHistory();
   
     useEffect(() => {
-      setShopCartValue(convertedValue(shopCartValue));
-    }, [shopCartValue]);
+      if(shopCart.length) return setShopCartValue(convertedValue(shopCartValue));
+      return setShopCartValue(convertedValue(0));
+    }, [shopCart]);
     
   
     return (

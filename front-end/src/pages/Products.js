@@ -6,6 +6,7 @@ import NavBar from '../components/navBar';
 // import mockProducts from '../mocks/mockProducts';
 import { getUserAcessFromLocal } from '../services/localStorage';
 import { saveUser } from '../redux/actions';
+import ShopCart from '../components/shopCart';
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -34,7 +35,7 @@ function Products() {
   return (
     <div className="general-page">
       <NavBar />
-
+      <ShopCart />
       { !products.length
         ? <h3 className="h3-title">Carregando...</h3>
         : (

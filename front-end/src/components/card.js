@@ -45,6 +45,7 @@ function Card(product) {
           type="button"
           className="button--small"
           data-testid={ `customer_products__button-card-add-item-${id}` }
+          disable={ valueAdd > 0 ? false: true }
           onClick={ () => setValueAdd((valueAdd + 1)) }
         >
           +

@@ -18,3 +18,10 @@ export const saveShopCart = () => (
     type: SET_SHOP_CART,
   }
 );
+
+export const rmShopCart = () => (
+  {
+    type: SET_SHOP_CART,
+  }
+);
+
