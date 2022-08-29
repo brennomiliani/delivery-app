@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function OrderCard(item) {
   const { id, status, saleDate, totalPrice, deliveryAddress } = item;
 
   return (
-    <div>
+    <Link to={ `orders/${id}` }>
       <div>
         <h3>Pedido</h3>
         <h3 data-testid={ `seller_orders__element-order-id-${id}` }>{ id }</h3>
@@ -23,7 +24,7 @@ function OrderCard(item) {
       >
         { deliveryAddress }
       </h3>
-    </div>
+    </Link>
   );
 }
 
