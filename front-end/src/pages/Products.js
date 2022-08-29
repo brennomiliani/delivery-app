@@ -29,7 +29,7 @@ function Products() {
   useEffect(() => {
     getProducts();
     dispatch(saveUser(getLastUser()));
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="general-page">
