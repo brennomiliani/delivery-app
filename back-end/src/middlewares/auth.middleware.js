@@ -1,4 +1,4 @@
-import { authenticateJWTToken } from '../shared/JWTHelpers';
+const { authenticateJWTToken } = require('../shared/JWTHelpers');
 
 const authenticationMiddleware = async (req, res, next) => {
   const token = req.headers.authorization || '';
@@ -10,4 +10,4 @@ const authenticationMiddleware = async (req, res, next) => {
   next();
 };
 
-export default authenticationMiddleware;
+module.exports = { authenticationMiddleware };
