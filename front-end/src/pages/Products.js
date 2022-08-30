@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 import Card from '../components/card';
 import NavBar from '../components/navBar';
 // import mockProducts from '../mocks/mockProducts';
-import { getUserAcessFromLocal } from '../services/localStorage';
-import { saveUser } from '../redux/actions';
+import { getShopCartFromLocal, getUserAcessFromLocal } from '../services/localStorage';
+import { saveProducts, saveUser } from '../redux/actions';
 import ShopCart from '../components/shopCart';
 
 function Products() {
@@ -20,6 +20,11 @@ function Products() {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    const products = getShopCartFromLocal();
+    dispatch(saveProducts(products));
+  }, []);
 
   const getLastUser = () => {
     const user = getUserAcessFromLocal();

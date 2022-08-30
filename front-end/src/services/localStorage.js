@@ -12,3 +12,24 @@ export const addAcessUserToLocal = (user) => {
     setUserAcessToLocal(user);
   }
 };
+
+// add carrinho
+export const getShopCartFromLocal = () => JSON
+  .parse(localStorage.getItem('carrinho'));
+export const setShopCartToLocal = (newList) => localStorage
+  .setItem('carrinho', JSON.stringify(newList));
+
+export const addProductsToLocal = (products) => {
+  if (!JSON.parse(localStorage.getItem('carrinho'))) {
+    localStorage.setItem('carrinho', JSON
+      .stringify([]));
+  }
+  if (products.length) {
+    setShopCartToLocal(products);
+  }
+};
+
+export const removeProductToLocal = (id) => {
+  const removeProd = getShopCartFromLocal().filter(item =>  item.id !== Number(id));
+  setShopCartToLocal(removeProd);
+};

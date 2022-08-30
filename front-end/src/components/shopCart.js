@@ -24,9 +24,9 @@ function ShopCart() {
   return (
     <div className="container-account-balance">
       <button
-        onClick={ () => history.push('/customer/orders') }
+        onClick={ () => history.push('/customer/checkout') }
         type="button"
-        data-testid="customer_products__button-cart"
+        data-testid='customer_products__button-cart'
       >
         Ver carrinho:
         {' '}
