@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToShopCart, editShopCart } from '../redux/actions';
-import { getShopCartFromLocal } from '../services/localStorage';
 import convertedValue from '../services/utils';
 
 function Card(product) {
@@ -11,14 +10,6 @@ function Card(product) {
   const { products } = useSelector((state) => state.wallet);
   const productsStored = useSelector((state) => state.products);
 
-  useEffect(() => {
-    const findProd = productsStored.find(item => item.id === Number(id));
-    if (findProd) {
-      setValueAdd(findProd.qtd);
-      handleProductRedux(findProd.qtd);
-    }
-  }, []);
-  
   const handleProductRedux = (value) => {
     const objProd = { id, name, price, qtd: value };
     const findProd = products.find((item) => Number(item.id) === id);
@@ -29,6 +20,14 @@ function Card(product) {
     }
     dispatch(editShopCart(objProd));
   };
+
+  useEffect(() => {
+    const findProd = productsStored.find((item) => item.id === Number(id));
+    if (findProd) {
+      setValueAdd(findProd.qtd);
+      handleProductRedux(findProd.qtd);
+    }
+  }, []);
 
   return (
     <div className="card_data">
@@ -69,7 +68,7 @@ function Card(product) {
           data-testid={ `customer_products__input-card-quantity-${id}` }
           value={ valueAdd }
           onChange={ (e) => {
-            if(e.target.value >= 0) { 
+            if (e.target.value >= 0) {
               setValueAdd(e.target.value);
               handleProductRedux(e.target.value);
             }

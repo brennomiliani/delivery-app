@@ -22,8 +22,8 @@ function Products() {
   };
 
   const getProductsStored = () => {
-    const products = getShopCartFromLocal();
-    if (products) return products;
+    const productsStored = getShopCartFromLocal();
+    if (productsStored) return productsStored;
     return [];
   };
 

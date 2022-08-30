@@ -2,8 +2,8 @@ import { DISABLE_BUTTON,
   EDIT_SHOP_CART,
   RM_SHOP_CART,
   SET_PRODUCTS,
-  SET_SHOP_CART, 
-  SET_USER_INFOS} from './actionTypes';
+  SET_SHOP_CART,
+  SET_USER_INFOS } from './actionTypes';
 
 export const saveUser = (user) => (
   {
@@ -32,15 +32,16 @@ export const editShopCart = (payload) => (
   }
 );
 
-export const rmShopCart = () => (
+export const rmShopCart = (payload) => (
   {
     type: RM_SHOP_CART,
+    payload
   }
 );
 
 export const saveProducts = (payload) => (
   {
     type: SET_PRODUCTS,
-    payload
+    payload,
   }
 );

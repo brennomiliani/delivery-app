@@ -26,7 +26,7 @@ function ShopCart() {
       <button
         onClick={ () => history.push('/customer/checkout') }
         type="button"
-        data-testid='customer_products__button-cart'
+        data-testid="customer_products__button-cart"
       >
         Ver carrinho:
         {' '}

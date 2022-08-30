@@ -14,9 +14,10 @@ function App() {
       <Route path="/login" component={ Login } />
       <Route path="/register" component={ Register } />
       <Route path="/customer/products" component={ Products } />
+      <Route path="/customer/checkout" component={ Checkout } />
+
       <Route path="/seller/orders" component={ OrdersPage } />
       <Route path="/seller/orders/:id" component={ OrderDetail } />
-      <Route path="/customer/checkout'" component={ Checkout } />
       {/* <Route path="*" component={ NotFound } /> */}
     </Switch>
   );

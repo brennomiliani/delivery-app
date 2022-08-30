@@ -30,6 +30,6 @@ export const addProductsToLocal = (products) => {
 };
 
 export const removeProductToLocal = (id) => {
-  const removeProd = getShopCartFromLocal().filter(item =>  item.id !== Number(id));
+  const removeProd = getShopCartFromLocal().filter((item) => item.id !== Number(id));
   setShopCartToLocal(removeProd);
 };

@@ -1,19 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import Card from '../components/card';
+// import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 import NavBar from '../components/navBar';
 import { getShopCartFromLocal, getUserAcessFromLocal } from '../services/localStorage';
-import { saveProducts, saveUser } from '../redux/actions';
-import ShopCart from '../components/shopCart';
+import { rmShopCart, saveProducts, saveUser } from '../redux/actions';
+import TableProdCart from '../components/table';
+import convertedValue from '../services/utils';
+import CardAdress from '../components/cardAdress';
 
 function Checkout() {
-  const [products, setProducts] = useState([]);
+  const [totalValue, setTotalValue] = useState(convertedValue(0));
+  const { removedItem } = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
   const getProductsStored = () => {
     const products = getShopCartFromLocal();
-    if (products) return products;
+    if (products.length) {
+      const sumProd = products.reduce((sum, item) => {
+        const { price, qtd } = item;
+        const totalShopCart = Number(price) * Number(qtd);
+        sum += totalShopCart;
+        return sum;
+      }, 0);
+      setTotalValue(convertedValue(sumProd));
+      return products;
+    }
     return [];
   };
 
@@ -26,21 +37,34 @@ function Checkout() {
   useEffect(() => {
     dispatch(saveProducts(getProductsStored()));
     dispatch(saveUser(getLastUser()));
-  }, [dispatch]);
+    dispatch(rmShopCart(false));
+  }, [removedItem]);
 
   return (
     <div className="general-page">
       <NavBar />
-      <ShopCart />
-      { !products.length
-        ? <h3 className="h3-title">Carregando...</h3>
-        : (
-          <section>
-            <div>
-              { products.map((item) => (
-                <Card key={ item.id } { ...item } />))}
-            </div>
-          </section>)}
+      <TableProdCart />
+      <div>
+        <span
+          data-testid="customer_checkout__element-order-total-price"
+        >
+          Total:
+          {' '}
+          { totalValue }
+        </span>
+      </div>
+
+      <CardAdress />
+
+      <div className="section-btns">
+        <button
+          type="button"
+          data-testid="customer_checkout__button-submit-order"
+          className="button-general button--flex"
+        >
+          Finalizar Pedido
+        </button>
+      </div>
     </div>
   );
 }
