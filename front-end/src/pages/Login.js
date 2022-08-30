@@ -28,7 +28,7 @@ function Login() {
         name: response.data.name,
         email: inputEmail,
         role: response.data.role,
-        token: response.data.token }); 
+        token: response.data.token });
       if (response.data.role === 'customer') return history.push('/customer/products');
       if (response.data.role === 'administrator') return history.push('/admin/manage');
       history.push('/seller/orders');
