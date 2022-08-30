@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { addToShopCart, editShopCart } from '../redux/actions';
 import convertedValue from '../services/utils';
 
 function Card(product) {
@@ -8,11 +9,16 @@ function Card(product) {
   const dispatch = useDispatch();
   const { products } = useSelector(state => state.wallet);
 
-  useEffect(() => {
-    if () {
-      
+  const handleProductRedux = (value) => {
+    const objProd = { id, name, price, qtd: value };
+    const findProd = products.find(item => Number(item.id) === id);
+
+    if (!findProd) {
+      dispatch(addToShopCart(objProd));
+      return;
     }
-  }, [])
+    dispatch(editShopCart(objProd))
+  };
   
 
   return (
@@ -42,7 +48,10 @@ function Card(product) {
           className="button--small button-color-general"
           data-testid={ `customer_products__button-card-rm-item-${id}` }
           disabled={ valueAdd > 0 ? false: true }
-          onClick={ () => setValueAdd((valueAdd - 1)) }
+          onClick={ () => {
+            setValueAdd((valueAdd - 1));
+            handleProductRedux((valueAdd - 1));
+          } }
         >
           -
         </button>
@@ -56,7 +65,10 @@ function Card(product) {
           type="button"
           className="button--small"
           data-testid={ `customer_products__button-card-add-item-${id}` }
-          onClick={ () => setValueAdd((valueAdd + 1)) }
+          onClick={ () => {
+            setValueAdd((valueAdd + 1));
+            handleProductRedux((valueAdd + 1));
+          } }
         >
           +
         </button>

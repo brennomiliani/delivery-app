@@ -1,4 +1,4 @@
-import { DISABLE_BUTTON, RM_SHOP_CART, SET_SHOP_CART, SET_USER_INFOS } from './actionTypes';
+import { DISABLE_BUTTON, EDIT_SHOP_CART, RM_SHOP_CART, SET_SHOP_CART, SET_USER_INFOS } from './actionTypes';
 
 export const saveUser = (user) => (
   {
@@ -13,9 +13,17 @@ export const disableButton = () => (
   }
 );
 
-export const saveShopCart = () => (
+export const addToShopCart = (payload) => (
   {
     type: SET_SHOP_CART,
+    payload
+  }
+);
+
+export const editShopCart = (payload) => (
+  {
+    type: EDIT_SHOP_CART,
+    payload
   }
 );
 

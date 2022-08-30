@@ -5,13 +5,23 @@ import { useSelector } from 'react-redux';
 
 function ShopCart() {
     const [shopCartValue, setShopCartValue] = useState(convertedValue(0));
-    const shopCart = useSelector(state => state.wallet);
+    const { products } = useSelector(state => state.wallet);
     const history = useHistory();
   
     useEffect(() => {
-      if(shopCart.length) return setShopCartValue(convertedValue(shopCartValue));
+      if(products.length) {
+        const sum = () => {
+          return products.reduce((sum, item) => {
+            const { price, qtd } = item;
+            const totalShopCart = Number(price) * Number(qtd);
+            sum += totalShopCart;
+            return sum;
+          }, 0);
+        }
+        return setShopCartValue(convertedValue(sum()));
+      }
       return setShopCartValue(convertedValue(0));
-    }, [shopCart]);
+    }, [products]);
     
   
     return (
