@@ -25,12 +25,11 @@ const getAllSales = async (email) => {
 };
 
 const findBySale = async (id) => {
-  const result = await Sale.findOne({
+  const result = await Sale.findOne({ where: { id },
     include: [
-      { model: SaleProduct, as: 'salesProducts', attributes: ["quantity"] },
-      { model: Product, as: 'products', attributes: ["name", "price"] },
-    ],
-    where: { id }
+      { model: Product, as: 'products', through: { attributes: ['quantity'] } },
+    ]
+    
   });
   if (!result) {
     throw new HttpException(
