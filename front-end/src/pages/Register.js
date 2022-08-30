@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import verifyValidation from '../validations/validateUser';
 import { saveUser } from '../redux/actions/index';
+import { addAcessUserToLocal } from '../services/localStorage';
 
 const INITIAL_STATE = {
   inputName: '',
@@ -26,10 +27,15 @@ function SignIn() {
     dispatch(saveUser(userData.inputEmail));
     const { inputEmail, inputName, inputPassword } = userData;
     try {
-      await axios.post('http://localhost:3001/register', { name: inputName, email: inputEmail, password: inputPassword });
+      const result = await axios.post('http://localhost:3001/register', { name: inputName, email: inputEmail, password: inputPassword });
+      const objUser = {
+        name: inputName,
+        email: inputEmail,
+        role: result.data.role,
+        token: result.data.token };
+      addAcessUserToLocal(objUser);
       history.push('/customer/products');
     } catch (error) {
-      console.log(error);
       setAlreadyCreated(true);
       setUserData(INITIAL_STATE);
     }
