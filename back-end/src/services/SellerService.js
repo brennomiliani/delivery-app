@@ -24,4 +24,15 @@ const getAllSales = async (email) => {
   return sales;
 };
 
-module.exports = { getAllSales };
+const findBySale = async (id) => {
+  const result = await Sale.findByPk(id);
+  if (!result) {
+    throw new HttpException(
+      400,
+      'No Sales Registered ',
+    );
+  }
+  return result;
+};
+
+module.exports = { getAllSales, findBySale };
