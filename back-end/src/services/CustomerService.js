@@ -5,22 +5,21 @@ const getAll = async () => {
   return products;
 };
 
-const checkout = async (body) => {
+const checkout = async (body, payload) => {
   const {
-    userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, productId, quantity,
+    sellerId, totalPrice, deliveryAddress, deliveryNumber, products,
   } = body;
+  const { id } = payload;
   const saleDate = new Date();
   const completeSaleInfo = {
-    userId,
-    sellerId,
-    totalPrice,
-    deliveryAddress,
-    deliveryNumber,
-    saleDate,
-    status: 'Pendente',
+    userId: id, sellerId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status: 'Pendente',
   };
   const newSale = await Sale.create(completeSaleInfo);
-  await SaleProduct.create({ saleId: newSale.id, productId, quantity });
+  const saleProductArr = products
+    .map((product) => (
+      { saleId: newSale.id, productId: product.productId, quantity: product.quantity }
+    ));
+  await SaleProduct.bulkCreate(saleProductArr);
   return newSale.id;
 };
 

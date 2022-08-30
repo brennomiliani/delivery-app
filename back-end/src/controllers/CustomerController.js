@@ -7,7 +7,8 @@ const getAll = async (_req, res) => {
 };
 
 const checkout = async (req, res) => {
-  const id = await customerService.checkout(req.body);
+  const { payload } = res.locals;
+  const id = await customerService.checkout(req.body, payload);
   return res.status(StatusCodes.OK).json({ id });
 };
 

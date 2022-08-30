@@ -20,8 +20,8 @@ const findUser = async ({ email, password }) => {
       'Incorrect email or password',
     );
   }
-  const { name, role } = userFound;
-  const token = generateJWTToken({ name, email, role });
+  const { id, name, role } = userFound;
+  const token = generateJWTToken({ id, name, email, role });
 
   return { token, role };
 };
