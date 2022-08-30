@@ -1,5 +1,5 @@
-const { Product, User, Sale } = require('../database/models');
 const { StatusCodes } = require('http-status-codes');
+const { Product, User, Sale } = require('../database/models');
 const HttpException = require('../shared/HttpException');
 
 const getAll = async () => {
