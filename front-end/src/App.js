@@ -18,7 +18,6 @@ function App() {
 
       <Route path="/seller/orders" component={ OrdersPage } />
       <Route path="/seller/orders/:id" component={ OrderDetail } />
-      {/* <Route path="*" component={ NotFound } /> */}
     </Switch>
   );
 }
