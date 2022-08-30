@@ -5,7 +5,7 @@ import walletReducer from '../reducers/walletReducer';
 const store = configureStore({
   reducer: {
     user: userReducer,
-    wallet: walletReducer
+    wallet: walletReducer,
   },
 });
 

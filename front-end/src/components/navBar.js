@@ -9,7 +9,7 @@ function NavBar() {
   const logout = () => {
     localStorage.clear();
     history.push('/');
-  }
+  };
 
   return (
     <nav className="nav container">
@@ -41,10 +41,11 @@ function NavBar() {
           </span>
 
           <button
-            type='button'
+            type="button"
             onClick={ () => logout() }
             className="nav_item"
-            data-testid="customer_products__element-navbar-link-logout">
+            data-testid="customer_products__element-navbar-link-logout"
+          >
             Sair
           </button>
         </div>

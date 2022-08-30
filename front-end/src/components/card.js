@@ -7,19 +7,18 @@ function Card(product) {
   const { name, price, url_image: urlImage, id } = product;
   const [valueAdd, setValueAdd] = useState(0);
   const dispatch = useDispatch();
-  const { products } = useSelector(state => state.wallet);
+  const { products } = useSelector((state) => state.wallet);
 
   const handleProductRedux = (value) => {
     const objProd = { id, name, price, qtd: value };
-    const findProd = products.find(item => Number(item.id) === id);
+    const findProd = products.find((item) => Number(item.id) === id);
 
     if (!findProd) {
       dispatch(addToShopCart(objProd));
       return;
     }
-    dispatch(editShopCart(objProd))
+    dispatch(editShopCart(objProd));
   };
-  
 
   return (
     <div className="card_data">
@@ -47,7 +46,7 @@ function Card(product) {
           type="button"
           className="button--small button-color-general"
           data-testid={ `customer_products__button-card-rm-item-${id}` }
-          disabled={ valueAdd > 0 ? false: true }
+          disabled={ (valueAdd <= 0) }
           onClick={ () => {
             setValueAdd((valueAdd - 1));
             handleProductRedux((valueAdd - 1));
