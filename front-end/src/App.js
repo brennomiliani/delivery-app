@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Products from './pages/Products';
 import OrdersPage from './pages/OrdersPage';
 import OrderDetail from './pages/OrderDetail';
+import Checkout from './pages/CheckoutCustomer';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
       <Route path="/customer/products" component={ Products } />
       <Route path="/seller/orders" component={ OrdersPage } />
       <Route path="/seller/orders/:id" component={ OrderDetail } />
-      <Route path="/customer/checkout'" component={ Register } />
+      <Route path="/customer/checkout'" component={ Checkout } />
       {/* <Route path="*" component={ NotFound } /> */}
     </Switch>
   );

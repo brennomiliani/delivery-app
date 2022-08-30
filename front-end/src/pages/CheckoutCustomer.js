@@ -3,23 +3,13 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import Card from '../components/card';
 import NavBar from '../components/navBar';
-// import mockProducts from '../mocks/mockProducts';
 import { getShopCartFromLocal, getUserAcessFromLocal } from '../services/localStorage';
 import { saveProducts, saveUser } from '../redux/actions';
 import ShopCart from '../components/shopCart';
 
-function Products() {
+function Checkout() {
   const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
-
-  const getProducts = async () => {
-    try {
-      const { data } = await axios.get('http://localhost:3001/customer/products');
-      setProducts(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const getProductsStored = () => {
     const products = getShopCartFromLocal();
@@ -34,7 +24,6 @@ function Products() {
   };
 
   useEffect(() => {
-    getProducts();
     dispatch(saveProducts(getProductsStored()));
     dispatch(saveUser(getLastUser()));
   }, [dispatch]);
@@ -56,4 +45,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default Checkout;
