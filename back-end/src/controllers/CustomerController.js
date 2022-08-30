@@ -11,4 +11,10 @@ const getById = async (req, res) => {
   return res.status(StatusCodes.OK).json(result);
 };
 
-module.exports = { getAll, getById };
+const getAllOrdersByClient = async (_req, res) => {
+  const { email } = res.locals.payload;
+  const result = await customerService.getAllOrdersByClient(email);
+  return res.status(StatusCodes.OK).json(result);
+};
+
+module.exports = { getAll, getById, getAllOrdersByClient };

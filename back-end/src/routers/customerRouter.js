@@ -6,6 +6,7 @@ const authenticationMiddleware = require('../middlewares/authMiddleware');
 const router = Router();
 
 router.get('/products', CustomerController.getAll);
+router.get('/order', authenticationMiddleware, CustomerController.getAllOrdersByClient);
 
 router.get('/orders/:id', authenticationMiddleware, CustomerController.getById);
 
