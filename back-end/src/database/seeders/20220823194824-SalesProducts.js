@@ -8,7 +8,8 @@ module.exports = {
       },
       {
         sale_id: 1,
-        product_id: 2,
+        // product_id: 2,
+        product_id: 3,
         quantity: 1,
       },
     ], {});
