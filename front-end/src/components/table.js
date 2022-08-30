@@ -5,7 +5,7 @@ import { removeProductToLocal } from '../services/localStorage';
 import convertedValue from '../services/utils';
 
 function TableProdCart() {
-  const [dataStor, setDataStor] = useState([])
+  const [dataStor, setDataStor] = useState([]);
   const { products } = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
@@ -29,11 +29,34 @@ function TableProdCart() {
         {dataStor
           .map(({ name, price, id, qtd }, index) => (
             <tr key={ id }>
-              <td data-testid={ `customer_checkout__element-order-table-item-number-${index}` }>{id}</td>
-              <td data-testid={ `customer_checkout__element-order-table-name-${index}` }>{name}</td>
-              <td data-testid={ `customer_checkout__element-order-table-quantity-${index}` }>{qtd}</td>
-              <td data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }>{price}</td>
-              <td data-testid={ `customer_checkout__element-order-table-remove-${index}` }>{convertedValue(Number(price) * Number(qtd))}</td>
+              <td
+                data-testid={ `customer_checkout__element-order-table-item-number-
+                ${index}` }
+              >
+                {id}
+              </td>
+              <td
+                data-testid={ `customer_checkout__element-order-table-name-${index}` }
+              >
+                {name}
+              </td>
+              <td
+                data-testid={ `customer_checkout__element-order-table-quantity-
+                ${index}` }
+              >
+                {qtd}
+              </td>
+              <td
+                data-testid={ `customer_checkout__element-order-table-unit-price-
+                ${index}` }
+              >
+                {price}
+              </td>
+              <td
+                data-testid={ `customer_checkout__element-order-table-remove-${index}` }
+              >
+                {convertedValue(Number(price) * Number(qtd))}
+              </td>
               <td>
                 <button
                   id={ id }

@@ -35,7 +35,7 @@ export const editShopCart = (payload) => (
 export const rmShopCart = (payload) => (
   {
     type: RM_SHOP_CART,
-    payload
+    payload,
   }
 );
 

@@ -7,27 +7,29 @@ const INITIAL_STATE = {
 const walletReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case SET_SHOP_CART:
-    const newProd = {
+    addProductsToLocal([...state.products, action.payload]);
+    return {
       ...state,
       products: [...state.products, action.payload] };
-    addProductsToLocal(newProd.products);
-    return newProd;
     //   case RM_SHOP_CART:
     //     return (action.payload - action.state);
   case EDIT_SHOP_CART:
-    const update = {
+    if (Number(action.payload.qtd) === 0) {
+      removeProductToLocal(action.payload.id);
+    } else {
+      const update = state.products.map((product) => {
+        if (product.id === action.payload.id) return action.payload;
+        return product;
+      });
+      addProductsToLocal(update);
+    }
+    return {
       ...state,
       products: state.products.map((product) => {
         if (product.id === action.payload.id) return action.payload;
         return product;
       }),
     };
-    if (Number(action.payload.qtd) === 0) {
-      removeProductToLocal(action.payload.id);
-    } else {
-      addProductsToLocal(update.products);
-    }
-    return update;
   default:
     return state;
   }
