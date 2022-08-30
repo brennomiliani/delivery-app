@@ -24,13 +24,13 @@ function Login() {
   const handleClick = async () => {
     try {
       const response = await axios.post('http://localhost:3001/login', { email: inputEmail, password: inputPassword });
-      if (response.data.role === 'customer') return history.push('/customer/products');
-      if (response.data.role === 'administrator') return history.push('/admin/manage');
       addAcessUserToLocal({
         name: response.data.name,
         email: inputEmail,
         role: response.data.role,
         token: response.data.token });
+      if (response.data.role === 'customer') return history.push('/customer/products');
+      if (response.data.role === 'administrator') return history.push('/admin/manage');
       history.push('/seller/orders');
     } catch (error) {
       setUserData(INITIAL_STATE);
