@@ -86,8 +86,9 @@ function TableProdCart() {
                   <td>
                     <button
                       id={ id }
-                      data-testid={ `customer_checkout__element-order-table-remove-
-                      ${index}` }
+                      data-testid={
+                        `customer_checkout__element-order-table-remove-${index}`
+                      }
                       type="button"
                       onClick={ () => {
                         removeProductToLocal(id);
