@@ -3,7 +3,7 @@ import NavBar from '../components/navBar';
 import usePath from '../hooks/usePath';
 import { getUserAcessFromLocal } from '../services/localStorage';
 
-function OrderDetail() {
+function SellerOrderDetail() {
   const [order, setOrder] = useState();
   const { id } = usePath();
 
@@ -79,4 +79,4 @@ function OrderDetail() {
   );
 }
 
-export default OrderDetail;
+export default SellerOrderDetail;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function OrderCard(item) {
+function SellerOrderCard(item) {
   const { id, status, saleDate, totalPrice, deliveryAddress } = item;
 
   return (
@@ -28,4 +28,4 @@ function OrderCard(item) {
   );
 }
 
-export default OrderCard;
+export default SellerOrderCard;
