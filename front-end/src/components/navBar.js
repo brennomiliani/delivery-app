@@ -6,10 +6,10 @@ function NavBar() {
   const user = useSelector((state) => state.user);
   const history = useHistory();
 
-  const logout = () => {
-    localStorage.clear();
-    history.push('/');
-  };
+  // const logout = () => {
+  //   localStorage.clear();
+  //   history.push('/');
+  // };
 
   return (
     <nav className="nav container">
@@ -40,14 +40,16 @@ function NavBar() {
             { user ? user.name : ''}
           </span>
 
-          <button
-            type="button"
-            onClick={ () => logout() }
-            className="nav_item"
-            data-testid="customer_products__element-navbar-link-logout"
-          >
-            Sair
-          </button>
+          <span
+          data-testid="customer_products__element-navbar-link-logout"
+          className="button-logout"
+        >
+          <Link to="/login">
+            <button onClick={ () => localStorage.clear() } type="button">
+              Sair
+            </button>
+          </Link>
+        </span>
         </div>
       </div>
     </nav>
