@@ -6,6 +6,11 @@ const getAll = async (_req, res) => {
   return res.status(StatusCodes.OK).json(result);
 };
 
+const getAllSellers = async (_req, res) => {
+  const result = await customerService.getAllSellers();
+  return res.status(StatusCodes.OK).json(result);
+};
+
 const checkout = async (req, res) => {
   const { payload } = res.locals;
   const id = await customerService.checkout(req.body, payload);
@@ -22,4 +27,5 @@ module.exports = {
   getAll,
   checkout,
   getAllOrdersByClient,
+  getAllSellers,
 };

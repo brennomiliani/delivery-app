@@ -5,6 +5,11 @@ const getAll = async () => {
   return products;
 };
 
+const getAllSellers = async () => {
+  const products = await User.findAll({ where: { role: 'seller' } });
+  return products;
+};
+
 const checkout = async (body, payload) => {
   const {
     sellerId, totalPrice, deliveryAddress, deliveryNumber, products,
@@ -34,4 +39,5 @@ module.exports = {
   getAll,
   checkout,
   getAllOrdersByClient,
+  getAllSellers,
 };
