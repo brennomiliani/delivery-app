@@ -40,8 +40,13 @@ module.exports = (sequelize, DataTypes) => {
     });
 
   Sale.associate = (models) => {
-    Sale.belongsTo(models.User, { foreignKey: 'id', as: 'user' });
-    Sale.belongsTo(models.User, { foreignKey: 'id', as: 'seller' });
+    // before ->
+    // Sale.belongsTo(models.User, { foreignKey: 'id', as: 'user' });
+    // Sale.belongsTo(models.User, { foreignKey: 'id', as: 'seller' });
+  
+    // after change FK ->
+    Sale.belongsTo(models.User, { foreignKey: 'userId', as: 'user' });
+    Sale.belongsTo(models.User, { foreignKey: 'sellerId', as: 'seller' });
   };
 
   return Sale;

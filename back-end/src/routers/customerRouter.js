@@ -8,7 +8,7 @@ const router = Router();
 router.get('/products', CustomerController.getAll);
 router.get('/sellers', CustomerController.getAllSellers);
 router.get('/order', authenticationMiddleware, CustomerController.getAllOrdersByClient);
-
+router.get('/orders/:id', authenticationMiddleware, CustomerController.getById);
 router.post('/checkout', authenticationMiddleware, CustomerController.checkout);
 
 module.exports = router;
