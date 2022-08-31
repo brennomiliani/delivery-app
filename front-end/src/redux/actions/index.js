@@ -1,6 +1,7 @@
 import { DISABLE_BUTTON,
   EDIT_SHOP_CART,
   RM_SHOP_CART,
+  SET_INFO_ADRESS,
   SET_PRODUCTS,
   SET_SHOP_CART,
   SET_USER_INFOS } from './actionTypes';
@@ -42,6 +43,13 @@ export const rmShopCart = (payload) => (
 export const saveProducts = (payload) => (
   {
     type: SET_PRODUCTS,
+    payload,
+  }
+);
+
+export const saveAdress = (payload) => (
+  {
+    type: SET_INFO_ADRESS,
     payload,
   }
 );
