@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import convertedValue from '../services/utils';
 
 function ShopCart() {
-  const [shopCartValue, setShopCartValue] = useState(convertedValue(0));
+  const [shopCartValue, setShopCartValue] = useState(0);
   const { products } = useSelector((state) => state.wallet);
   const history = useHistory();
 
@@ -16,21 +16,26 @@ function ShopCart() {
         sum += totalShopCart;
         return sum;
       }, 0);
-      return setShopCartValue(convertedValue(sumProdu()));
+      return setShopCartValue(sumProdu());
     }
-    return setShopCartValue(convertedValue(0));
+    return setShopCartValue(0);
   }, [products]);
 
   return (
     <div className="container-account-balance">
       <button
+        data-testid="customer_products__button-cart"
         onClick={ () => history.push('/customer/checkout') }
         type="button"
-        data-testid="customer_products__button-cart"
+        disabled={ shopCartValue === 0 }
       >
         Ver carrinho:
         {' '}
-        { shopCartValue }
+        <div
+          data-testid="customer_products__checkout-bottom-value"
+        >
+          {convertedValue(shopCartValue)}
+        </div>
       </button>
     </div>
   );
