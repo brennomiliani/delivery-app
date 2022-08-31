@@ -24,14 +24,18 @@ function ShopCart() {
   return (
     <div className="container-account-balance">
       <button
+        data-testid="customer_products__button-cart"
         onClick={ () => history.push('/customer/checkout') }
         type="button"
-        data-testid="customer_products__button-cart"
         disabled={ shopCartValue === 0 }
       >
         Ver carrinho:
         {' '}
-        { convertedValue(shopCartValue) }
+        <div
+          data-testid="customer_products__checkout-bottom-value"
+        >
+          {convertedValue(shopCartValue)}
+        </div>
       </button>
     </div>
   );

@@ -12,7 +12,7 @@ const readJWTKey = async () => {
 readJWTKey();
 
 const jwtDefaultConfig = {
-  expiresIn: '24h',
+  expiresIn: '7d',
   algorithm: 'HS256',
 };
 

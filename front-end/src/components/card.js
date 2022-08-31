@@ -27,7 +27,7 @@ function Card(product) {
       setValueAdd(findProd.qtd);
       handleProductRedux(findProd.qtd);
     }
-  }, [productsStored]);
+  }, [id, productsStored]);
 
   return (
     <div className="card_data">
