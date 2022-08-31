@@ -22,7 +22,6 @@ const findUser = async ({ email, password }) => {
   }
   const { id, name, role } = userFound;
   const token = generateJWTToken({ id, name, email, role });
-
   return { token, role };
 };
 
