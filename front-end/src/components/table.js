@@ -3,13 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { rmShopCart } from '../redux/actions';
 import { removeProductToLocal } from '../services/localStorage';
 import convertedValue from '../services/utils';
+import usePath from '../hooks/usePath';
 
 function TableProdCart() {
   const [dataStor, setDataStor] = useState([]);
+  const [inCheckout, setInCheckout] = useState(false);
   const { products } = useSelector((state) => state.products);
   const dispatch = useDispatch();
+  const { pathname } = usePath();
 
   useEffect(() => {
+    if (pathname.includes('/checkout')) {
+      setInCheckout(true);
+    }
     setDataStor(products);
   }, [products]);
 
@@ -22,7 +28,8 @@ function TableProdCart() {
           <th>Quantidade</th>
           <th>Valor unitário</th>
           <th>Subtotal</th>
-          <th>Excluir</th>
+          { inCheckout
+            && <th>Excluir</th>}
         </tr>
       </thead>
       <tbody>
@@ -30,46 +37,66 @@ function TableProdCart() {
           .map(({ name, price, id, qtd }, index) => (
             <tr key={ id }>
               <td
-                data-testid={ `customer_checkout__element-order-table-item-number-
-                ${index}` }
+                data-testid={
+                  inCheckout
+                    ? `customer_checkout__element-order-table-item-number-${index}`
+                    : `customer_order_details__element-order-table-item-number-${index}`
+                }
               >
                 {id}
               </td>
               <td
-                data-testid={ `customer_checkout__element-order-table-name-${index}` }
+                data-testid={
+                  inCheckout
+                    ? `customer_checkout__element-order-table-name-${index}`
+                    : `customer_order_details__element-order-table-name-${index}`
+                }
               >
                 {name}
               </td>
               <td
-                data-testid={ `customer_checkout__element-order-table-quantity-
-                ${index}` }
+                data-testid={
+                  inCheckout
+                    ? `customer_checkout__element-order-table-quantity-${index}`
+                    : `customer_order_details__element-order-table-quantity-${index}`
+                }
               >
                 {qtd}
               </td>
               <td
-                data-testid={ `customer_checkout__element-order-table-unit-price-
-                ${index}` }
+                data-testid={
+                  inCheckout
+                    ? `customer_checkout__element-order-table-unit-price-${index}`
+                    : `customer_order_details__element-order-table-sub-total-${index}`
+                }
               >
                 {price}
               </td>
               <td
-                data-testid={ `customer_checkout__element-order-table-remove-${index}` }
+                data-testid={
+                  inCheckout
+                    ? `customer_checkout__element-order-table-sub-total-${index}`
+                    : `customer_order_details__element-order-total-price-${index}`
+                }
               >
                 {convertedValue(Number(price) * Number(qtd))}
               </td>
-              <td>
-                <button
-                  id={ id }
-                  data-testid="delete-btn"
-                  type="button"
-                  onClick={ () => {
-                    removeProductToLocal(id);
-                    dispatch(rmShopCart(true));
-                  } }
-                >
-                  Excluir
-                </button>
-              </td>
+              { inCheckout
+                && (
+                  <td>
+                    <button
+                      id={ id }
+                      data-testid={ `customer_checkout__element-order-table-remove-
+                      ${index}` }
+                      type="button"
+                      onClick={ () => {
+                        removeProductToLocal(id);
+                        dispatch(rmShopCart(true));
+                      } }
+                    >
+                      Excluir
+                    </button>
+                  </td>)}
             </tr>
           ))}
       </tbody>

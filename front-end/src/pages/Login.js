@@ -33,6 +33,7 @@ function Login() {
       if (response.data.role === 'administrator') return history.push('/admin/manage');
       history.push('/seller/orders');
     } catch (error) {
+      console.log(error);
       setUserData(INITIAL_STATE);
       setAlreadyCreated(true);
     }
