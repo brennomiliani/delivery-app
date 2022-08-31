@@ -37,7 +37,7 @@ function NavBar() {
             className="nav_item"
             data-testid="customer_products__element-navbar-user-full-name"
           >
-            { user ? user.name : ''}
+            {user ? user.name : ''}
           </span>
 
           <button

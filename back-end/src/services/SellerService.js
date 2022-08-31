@@ -1,4 +1,4 @@
-const { User, Sale } = require('../database/models');
+const { User, Sale, Product } = require('../database/models');
 const HttpException = require('../shared/HttpException');
 
 const findUser = async (email) => {
@@ -25,7 +25,11 @@ const getAllSales = async (email) => {
 };
 
 const findBySale = async (id) => {
-  const result = await Sale.findByPk(id);
+  const result = await Sale.findOne({ where: { id },
+    include: [
+      { model: Product, as: 'products', through: { attributes: ['quantity'] } },
+    ],    
+  });
   if (!result) {
     throw new HttpException(
       400,
