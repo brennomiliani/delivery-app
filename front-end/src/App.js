@@ -17,12 +17,12 @@ function App() {
       <Route path="/register" component={ Register } />
 
       <Route path="/customer/products" component={ Products } />
-      <Route path="/customer/orders" component={ CustomerOrdersPage } />
       <Route path="/customer/checkout" component={ Checkout } />
       <Route
         path="/customer/orders/:id"
         render={ (props) => (<OrderDetailsCustomer { ...props } />) }
       />
+      <Route path="/customer/orders" component={ CustomerOrdersPage } />
 
       <Route path="/seller/orders/:id" component={ SellerOrderDetail } />
       <Route path="/seller/orders" component={ SellerOrdersPage } />
