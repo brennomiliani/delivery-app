@@ -15,7 +15,6 @@ function OrderDetailsCustomer() {
     status: '' });
   const user = useSelector((state) => state.user);
 
-  // const history = useHistory();
   const dispatch = useDispatch();
   const { id } = usePath();
 

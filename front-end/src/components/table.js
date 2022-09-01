@@ -19,7 +19,6 @@ function TableProdCart() {
   }, []);
 
   useEffect(() => {
-    console.log(products);
     setDataStor(products);
   }, [products]);
 
@@ -47,7 +46,7 @@ function TableProdCart() {
                     : `customer_order_details__element-order-table-item-number-${index}`
                 }
               >
-                {id}
+                {index + 1}
               </td>
               <td
                 data-testid={

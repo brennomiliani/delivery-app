@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToShopCart, editShopCart } from '../redux/actions';
+import { addToShopCart, editShopCart, rmShopCart } from '../redux/actions';
 import { convertedValue } from '../services/utils';
 
 function Card(product) {
@@ -16,6 +16,10 @@ function Card(product) {
 
     if (!findProd) {
       dispatch(addToShopCart(objProd));
+      return;
+    }
+    if (!value) {
+      dispatch(rmShopCart(objProd));
       return;
     }
     dispatch(editShopCart(objProd));
