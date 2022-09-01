@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes');
-const { Product, User, Sale, SaleProduct, sequelize } = require('../database/models');
+const { Product, User, Sale, SaleProduct } = require('../database/models');
 const HttpException = require('../shared/HttpException');
 
 const getAll = async () => {
