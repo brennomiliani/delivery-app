@@ -46,7 +46,7 @@ function TableProdCart() {
                     : `customer_order_details__element-order-table-item-number-${index}`
                 }
               >
-                {index+1}
+                {index + 1}
               </td>
               <td
                 data-testid={
