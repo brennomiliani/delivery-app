@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import NavBar from '../components/navBar';
 import { getShopCartFromLocal } from '../services/localStorage';
 import { rmShopCart, saveProducts } from '../redux/actions';
 import TableProdCart from '../components/table';
-import convertedValue from '../services/utils';
+import { convertedValue } from '../services/utils';
 import CardAdress from '../components/cardAdress';
 
 function Checkout() {
-  const [totalValue, setTotalValue] = useState(convertedValue(0));
+  const [totalValue, setTotalValue] = useState(0);
 
   const { removedItem } = useSelector((state) => state.products);
   const user = useSelector((state) => state.user);
@@ -24,12 +24,12 @@ function Checkout() {
       return [];
     }
     const sumProd = products.reduce((sum, item) => {
-      const { price, qtd } = item;
-      const totalShopCart = Number(price) * Number(qtd);
+      const { price, SaleProduct: { quantity } } = item;
+      const totalShopCart = Number(price) * Number(quantity);
       sum += totalShopCart;
       return sum;
     }, 0);
-    setTotalValue(convertedValue(sumProd));
+    setTotalValue(sumProd);
     return products;
   };
 
@@ -38,7 +38,7 @@ function Checkout() {
     dispatch(rmShopCart(false));
   }, [removedItem, dispatch]);
 
-  const saveOrder = () => {
+  const saveOrder = async () => {
     const saveCart = getProductsStored();
 
     if (saveCart.length && user.adressInfo.sellerId) {
@@ -48,13 +48,15 @@ function Checkout() {
         totalPrice: totalValue,
         deliveryAddress: adress,
         deliveryNumber: number,
-        products: saveCart.map((item) => ({ productId: item.id, quantity: item.qtd })),
+        products: saveCart
+          .map((item) => ({ productId: item.id, quantity: item.SaleProduct.quantity })),
       };
-      console.log(objOrder);
-      // const response = await axios.post('http://localhost:3001/customer/orders',
-      // { headers: { Authorization: user.token }, objOrder });
-      // history.push(`customer/orders/${response.data.id}`);
-      history.push('/customer/orders/1');
+      const response = await axios.post(
+        'http://localhost:3001/customer/checkout',
+        objOrder,
+        { headers: { Authorization: user.token } },
+      );
+      history.push(`/customer/orders/${response.data.id}`);
     }
   };
 
@@ -68,7 +70,7 @@ function Checkout() {
         >
           Total:
           {' '}
-          { totalValue }
+          { convertedValue(totalValue) }
         </span>
       </div>
 

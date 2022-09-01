@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import convertedValue from '../services/utils';
+import { convertedValue } from '../services/utils';
 
 function ShopCart() {
   const [shopCartValue, setShopCartValue] = useState(0);
@@ -11,8 +11,8 @@ function ShopCart() {
   useEffect(() => {
     if (products.length) {
       const sumProdu = () => products.reduce((sum, item) => {
-        const { price, qtd } = item;
-        const totalShopCart = Number(price) * Number(qtd);
+        const { price, SaleProduct: { quantity } } = item;
+        const totalShopCart = Number(price) * Number(quantity);
         sum += totalShopCart;
         return sum;
       }, 0);

@@ -1,8 +1,7 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { saveAdress } from '../redux/actions';
-
-const sellersNameMock = [{ name: 'Fulana', id: 1 }, { name: 'Fulano', id: 2 }];
 
 function CardAdress() {
   const [sellers, setSellers] = useState([]);
@@ -11,13 +10,20 @@ function CardAdress() {
     adress: '',
     number: 0 });
 
+  const getSellers = async () => {
+    const { data } = await axios.get('http://localhost:3001/customer/sellers');
+    if (data) {
+      setSellers(data);
+      setInfoAdress((prev) => ({ ...prev, seller: data[0].name }));
+    }
+  };
+
   const handleInput = ({ target: { name, value } }) => {
     setInfoAdress((prev) => ({ ...prev, [name]: value }));
   };
 
   useEffect(() => {
-    setSellers(sellersNameMock);
-    setInfoAdress((prev) => ({ ...prev, seller: 'Fulana' }));
+    getSellers();
   }, []);
 
   useEffect(() => {
@@ -40,7 +46,7 @@ function CardAdress() {
             value={ infoAdressSeller.seller }
             onChange={ handleInput }
           >
-            { sellers.map((seller) => (
+            { sellers.length && sellers.map((seller) => (
               <option key={ seller.id } value={ seller.name }>{seller.name}</option>
             ))}
           </select>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToShopCart, editShopCart } from '../redux/actions';
-import convertedValue from '../services/utils';
+import { convertedValue } from '../services/utils';
 
 function Card(product) {
   const { name, price, url_image: urlImage, id } = product;
@@ -11,7 +11,7 @@ function Card(product) {
   const { products: productsStored } = useSelector((state) => state.products);
 
   const handleProductRedux = (value) => {
-    const objProd = { id, name, price, qtd: value };
+    const objProd = { id, name, price, SaleProduct: { quantity: value } };
     const findProd = products.find((item) => Number(item.id) === id);
 
     if (!findProd) {
@@ -24,8 +24,8 @@ function Card(product) {
   useEffect(() => {
     const findProd = productsStored.find((item) => item.id === Number(id));
     if (findProd) {
-      setValueAdd(findProd.qtd);
-      handleProductRedux(findProd.qtd);
+      setValueAdd(findProd.SaleProduct.quantity);
+      handleProductRedux(findProd.SaleProduct.quantity);
     }
   }, [id, productsStored]);
 
