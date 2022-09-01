@@ -1,27 +1,38 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import NavBar from '../components/navBar';
 import usePath from '../hooks/usePath';
 import { getUserAcessFromLocal } from '../services/localStorage';
+import { convertedValue } from '../services/utils';
 
 function SellerOrderDetail() {
-  const [order, setOrder] = useState();
+  const [order, setOrder] = useState({
+    status: '', saleDate: '', totalPrice: 0, products: [] });
   const { id } = usePath();
 
   const getOrderDetail = async () => {
     const user = getUserAcessFromLocal();
     try {
       const response = await axios.get(`http://localhost:3001/seller/orders/${id}`, { headers: { Authorization: user.token } });
-      setOrder(response);
+      console.log(response);
+      setOrder(response.data);
     } catch (error) {
       console.log(error);
     }
   };
 
+  const sumItens = order.products.reduce((sum, item) => {
+    const { price, SaleProduct: { quantity } } = item;
+    const totalShopCart = Number(price) * Number(quantity);
+    sum += totalShopCart;
+    return sum;
+  }, 0);
+
   useEffect(() => {
     getOrderDetail();
-  });
+  }, []);
 
-  const { status, saleDate, totalPrice } = order;
+  const { status, saleDate, products } = order;
 
   return (
     <div>
@@ -46,14 +57,12 @@ function SellerOrderDetail() {
         <button
           data-testid="seller_order_details__button-preparing-check"
           type="button"
-          onClick
         >
           Preparar Pedido
         </button>
         <button
           data-testid="seller_order_details__button-dispatch-check"
           type="button"
-          onClick
         >
           Saiu para Entrega
         </button>
@@ -69,11 +78,55 @@ function SellerOrderDetail() {
           </tr>
         </thead>
         <tbody>
-          {}
+          {products.map((product, index) => (
+            <tr key={ index }>
+              <td
+                data-testid={
+                  `seller_order_details__element-order-table-item-number-${index}`
+                }
+              >
+                {index + 1 }
+              </td>
+              <td
+                data-testid={
+                  `seller_order_details__element-order-table-name-${index}`
+                }
+              >
+                { product.name }
+              </td>
+              <td
+                data-testid={
+                  `seller_order_details__element-order-table-quantity-${index}`
+                }
+              >
+                { product.SaleProduct.quantity }
+              </td>
+              <td
+                data-testid={
+                  `seller_order_details__element-order-table-unit-price-${index}`
+                }
+              >
+                { product.price }
+              </td>
+              <td
+                data-testid={
+                  `seller_order_details__element-order-table-sub-total-${index}`
+                }
+              >
+                {convertedValue(
+                  (+product.SaleProduct.quantity) * (+product.price),
+                )}
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
       <footer>
-        <h3>{ totalPrice }</h3>
+        <h3
+          data-testis="seller_order_details__element-order-total-price"
+        >
+          { convertedValue(sumItens) }
+        </h3>
       </footer>
     </div>
   );

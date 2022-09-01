@@ -24,8 +24,8 @@ function App() {
         render={ (props) => (<OrderDetailsCustomer { ...props } />) }
       />
 
-      <Route path="/seller/orders" component={ SellerOrdersPage } />
       <Route path="/seller/orders/:id" component={ SellerOrderDetail } />
+      <Route path="/seller/orders" component={ SellerOrdersPage } />
     </Switch>
   );
 }
