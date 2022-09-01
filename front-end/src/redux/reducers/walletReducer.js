@@ -7,10 +7,12 @@ const INITIAL_STATE = {
 const walletReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case SET_SHOP_CART:
-    addProductsToLocal([...state.products, action.payload]);
+    addProductsToLocal([...state.products,
+      { idItem: state.products.length + 1, ...action.payload }]);
     return {
       ...state,
-      products: [...state.products, action.payload] };
+      products: [...state.products,
+        { idItem: state.products.length + 1, ...action.payload }] };
     //   case RM_SHOP_CART:
     //     return (action.payload - action.state);
   case EDIT_SHOP_CART:
