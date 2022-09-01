@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { rmShopCart } from '../redux/actions';
 import { removeProductToLocal } from '../services/localStorage';
-import convertedValue from '../services/utils';
+import { convertedValue } from '../services/utils';
 import usePath from '../hooks/usePath';
 
 function TableProdCart() {
@@ -16,6 +16,10 @@ function TableProdCart() {
     if (pathname.includes('/checkout')) {
       setInCheckout(true);
     }
+  }, []);
+
+  useEffect(() => {
+    console.log(products);
     setDataStor(products);
   }, [products]);
 
@@ -34,7 +38,7 @@ function TableProdCart() {
       </thead>
       <tbody>
         {dataStor
-          .map(({ name, price, id, qtd }, index) => (
+          .map(({ name, price, id, SaleProduct: { quantity } }, index) => (
             <tr key={ id }>
               <td
                 data-testid={
@@ -61,7 +65,7 @@ function TableProdCart() {
                     : `customer_order_details__element-order-table-quantity-${index}`
                 }
               >
-                {qtd}
+                {quantity}
               </td>
               <td
                 data-testid={
@@ -70,7 +74,7 @@ function TableProdCart() {
                     : `customer_order_details__element-order-table-sub-total-${index}`
                 }
               >
-                {price}
+                {convertedValue(price)}
               </td>
               <td
                 data-testid={
@@ -79,11 +83,14 @@ function TableProdCart() {
                     : `customer_order_details__element-order-total-price-${index}`
                 }
               >
-                {convertedValue(Number(price) * Number(qtd))}
+                {convertedValue(Number(price) * Number(quantity))}
               </td>
               { inCheckout
                 && (
-                  <td>
+                  <td
+                    data-testid={ `customer_checkout__element-order-table-remove-
+                  ${index}` }
+                  >
                     <button
                       id={ id }
                       data-testid={
