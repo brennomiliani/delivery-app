@@ -17,15 +17,15 @@ const getAllSellers = async (_req, res) => {
 };
 
 const getAllOrdersByClient = async (_req, res) => {
-  const { email } = res.locals.payload;
-  const result = await customerService.getAllOrdersByClient(email);
+  const { id } = res.locals.payload;
+  const result = await customerService.getAllOrdersByClient(id);
   return res.status(StatusCodes.OK).json(result);
 };
 
 const checkout = async (req, res) => {
   const { payload } = res.locals;
-  const id = await customerService.checkout(req.body, payload);
-  return res.status(StatusCodes.OK).json({ id });
+  const saleId = await customerService.checkout(req.body, payload);
+  return res.status(StatusCodes.CREATED).json({ saleId });
 };
 
 module.exports = {
