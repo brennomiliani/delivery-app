@@ -56,7 +56,8 @@ function Checkout() {
         objOrder,
         { headers: { Authorization: user.token } },
       );
-      history.push(`/customer/orders/${response.data.id}`);
+      localStorage.removeItem('carrinho');
+      history.push(`/customer/orders/${response.data.saleId}`);
     }
   };
 
