@@ -43,15 +43,15 @@ function NavBar() {
             !inSellerRoute
             && (
               // <span >
-                <Link
-                  to="/customer/products"
-                  className="nav_item"
-                  data-testid="customer_products__element-navbar-link-products"
-                >
-                  Produtos
-                </Link>
+              <Link
+                to="/customer/products"
+                className="nav_item"
+                data-testid="customer_products__element-navbar-link-products"
+              >
+                Produtos
+              </Link>
               // </span>
-              )
+            )
           }
 
           <span className="nav_item">
