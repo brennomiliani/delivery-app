@@ -11,6 +11,7 @@ import CardAdress from '../components/cardAdress';
 
 function Checkout() {
   const [totalValue, setTotalValue] = useState(0);
+  const [productsStor, setProductsStor] = useState([]);
 
   const { removedItem } = useSelector((state) => state.products);
   const user = useSelector((state) => state.user);
@@ -20,6 +21,7 @@ function Checkout() {
 
   const getProductsStored = () => {
     const products = getShopCartFromLocal();
+    setProductsStor(products);
     if (!products || !products.length) {
       return [];
     }
@@ -39,27 +41,29 @@ function Checkout() {
   }, [removedItem, dispatch]);
 
   const saveOrder = async () => {
-    const saveCart = getProductsStored();
+    // const saveCart = getProductsStored();
 
-    if (saveCart.length && user.adressInfo.sellerId) {
-      const { sellerId, adress, number } = user.adressInfo;
-      const objOrder = {
-        userId: user.id,
-        sellerId,
-        totalPrice: totalValue,
-        deliveryAddress: adress,
-        deliveryNumber: number,
-        products: saveCart
-          .map((item) => ({ productId: item.id, quantity: item.SaleProduct.quantity })),
-      };
-      const response = await axios.post(
-        'http://localhost:3001/customer/checkout',
-        objOrder,
-        { headers: { Authorization: user.token } },
-      );
-      localStorage.removeItem('carrinho');
-      history.push(`/customer/orders/${response.data.saleId}`);
-    }
+    // if (user.adressInfo.sellerId) {
+    const { sellerId, deliveryAddress, deliveryNumber } = user.adressInfo;
+    const objOrder = {
+      userId: user.id,
+      sellerId,
+      totalPrice: totalValue,
+      deliveryAddress,
+      deliveryNumber,
+      products: productsStor
+        .map((item) => ({ productId: item.id, quantity: item.SaleProduct.quantity })),
+    };
+    const response = await axios.post(
+      'http://localhost:3001/customer/checkout',
+      objOrder,
+      { headers: { Authorization: user.token } },
+    );
+    localStorage.removeItem('carrinho');
+    dispatch(saveProducts([]));
+
+    history.push(`/customer/orders/${response.data.saleId}`);
+    // }
   };
 
   return (
@@ -84,6 +88,7 @@ function Checkout() {
           onClick={ () => saveOrder() }
           data-testid="customer_checkout__button-submit-order"
           className="button-general button--flex"
+          disabled={ (totalValue <= 0) }
         >
           Finalizar Pedido
         </button>

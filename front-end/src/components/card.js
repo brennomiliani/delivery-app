@@ -18,11 +18,11 @@ function Card(product) {
       dispatch(addToShopCart(objProd));
       return;
     }
-    if (!value) {
-      dispatch(rmShopCart(objProd));
-      return;
-    }
+    // if (!value) {
+    //   return;
+    // }
     dispatch(editShopCart(objProd));
+    dispatch(rmShopCart(true));
   };
 
   useEffect(() => {

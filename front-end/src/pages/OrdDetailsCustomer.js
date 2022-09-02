@@ -23,7 +23,6 @@ function OrderDetailsCustomer() {
       const result = await axios.get(`http://localhost:3001/customer/orders/${id}`, { headers: { Authorization: user.token } });
       if (result) {
         setDataOrder(result.data);
-        console.log(result.data);
         setTotalValue(0);
         dispatch(saveProducts(result.data.products));
         const sumProd = result.data.products.reduce((sum, item) => {

@@ -25,7 +25,7 @@ const getAllOrdersByClient = async (_req, res) => {
 const checkout = async (req, res) => {
   const { payload } = res.locals;
   const saleId = await customerService.checkout(req.body, payload);
-  return res.status(StatusCodes.CREATED).json({ saleId });
+  return res.status(StatusCodes.CREATED).json({saleId});
 };
 
 module.exports = {

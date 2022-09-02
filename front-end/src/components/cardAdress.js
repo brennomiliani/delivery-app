@@ -6,33 +6,27 @@ import { saveAdress } from '../redux/actions';
 function CardAdress() {
   const [sellers, setSellers] = useState([]);
   const dispatch = useDispatch();
-  const [infoAdressSeller, setInfoAdress] = useState({ seller: '',
-    adress: '',
-    number: 0 });
+  const [infoAdressSeller, setInfoAdress] = useState({ sellerId: '',
+    deliveryAddress: '',
+    deliveryNumber: '' });
 
   const getSellers = async () => {
     const { data } = await axios.get('http://localhost:3001/customer/sellers');
     if (data) {
       setSellers(data);
-      setInfoAdress((prev) => ({ ...prev, seller: data[0].name }));
+      setInfoAdress((prev) => ({ ...prev, sellerId: data[0].id }));
+      dispatch(saveAdress({ sellerId: data[0].id }));
     }
   };
 
   const handleInput = ({ target: { name, value } }) => {
     setInfoAdress((prev) => ({ ...prev, [name]: value }));
+    dispatch(saveAdress({ [name]: value }));
   };
 
   useEffect(() => {
     getSellers();
   }, []);
-
-  useEffect(() => {
-    const { seller, adress, number } = infoAdressSeller;
-    if (seller && adress && number) {
-      const sellerId = sellers.find((s) => s.name === seller);
-      dispatch(saveAdress({ ...infoAdressSeller, sellerId: sellerId.id }));
-    }
-  }, [infoAdressSeller]);
 
   return (
     <form className="container-account-balance">
@@ -42,25 +36,34 @@ function CardAdress() {
           <select
             data-testid="customer_checkout__select-seller"
             id="seller"
+            defaultValue={ sellers[0] }
             name="seller"
-            value={ infoAdressSeller.seller }
-            onChange={ handleInput }
+            onChange={ (({ target }) => {
+              setInfoAdress({
+                ...infoAdressSeller,
+                sellerId: Number(target.options[target.selectedIndex].value),
+              });
+              dispatch(saveAdress({
+                sellerId: Number(target.options[target.selectedIndex].value),
+              }));
+            }
+            ) }
           >
             { sellers.length && sellers.map((seller) => (
-              <option key={ seller.id } value={ seller.name }>{seller.name}</option>
+              <option key={ seller.id } value={ seller.id }>{seller.name}</option>
             ))}
           </select>
         </label>
       </div>
       <div>
-        <label htmlFor="adress">
+        <label htmlFor="address">
           Endereço
           <input
-            name="adress"
+            name="deliveryAddress"
             type="text"
             data-testid="customer_checkout__input-address"
-            id="adress"
-            value={ infoAdressSeller.adress }
+            id="address"
+            value={ infoAdressSeller.deliveryAddress }
             onChange={ handleInput }
           />
         </label>
@@ -70,11 +73,11 @@ function CardAdress() {
         <label htmlFor="number">
           Número
           <input
-            name="number"
+            name="deliveryNumber"
             type="text"
             data-testid="customer_checkout__input-addressNumber"
             id="number"
-            value={ infoAdressSeller.number }
+            value={ infoAdressSeller.deliveryNumber }
             onChange={ handleInput }
           />
         </label>
