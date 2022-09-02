@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import OrderCard from '../components/OrderCard';
+import SellerOrderCard from '../components/SellerOrderCard';
 import NavBar from '../components/navBar';
 import { getUserAcessFromLocal } from '../services/localStorage';
 
-function OrdersPage() {
+function SellerOrdersPage() {
   const [orders, setOrders] = useState([]);
 
   const getAllOrders = async () => {
@@ -30,11 +30,11 @@ function OrdersPage() {
           <section>
             <div>
               { orders.map((item, index) => (
-                <OrderCard key={ index } { ...item } />))}
+                <SellerOrderCard key={ index } { ...item } />))}
             </div>
           </section>)}
     </div>
   );
 }
 
-export default OrdersPage;
+export default SellerOrdersPage;

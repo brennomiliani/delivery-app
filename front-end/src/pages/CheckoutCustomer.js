@@ -58,7 +58,7 @@ function Checkout() {
         { headers: { Authorization: user.token } },
       );
       localStorage.removeItem('carrinho');
-      history.push(`/customer/orders/${response.data.id}`);
+      history.push(`/customer/orders/${response.data.saleId}`);
     }
   };
 

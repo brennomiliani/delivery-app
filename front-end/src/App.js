@@ -3,8 +3,9 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Products from './pages/Products';
-import OrdersPage from './pages/OrdersPage';
-import OrderDetail from './pages/OrderDetail';
+import SellerOrdersPage from './pages/SellerOrdersPage';
+import SellerOrderDetail from './pages/SellerOrderDetail';
+import CustomerOrdersPage from './pages/CustomerOrdersPage';
 import Checkout from './pages/CheckoutCustomer';
 import OrderDetailsCustomer from './pages/OrdDetailsCustomer';
 
@@ -21,9 +22,10 @@ function App() {
         path="/customer/orders/:id"
         render={ (props) => (<OrderDetailsCustomer { ...props } />) }
       />
+      <Route path="/customer/orders" component={ CustomerOrdersPage } />
 
-      <Route path="/seller/orders" component={ OrdersPage } />
-      <Route path="/seller/orders/:id" component={ OrderDetail } />
+      <Route path="/seller/orders/:id" component={ SellerOrderDetail } />
+      <Route path="/seller/orders" component={ SellerOrdersPage } />
     </Switch>
   );
 }
