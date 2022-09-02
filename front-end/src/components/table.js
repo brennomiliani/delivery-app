@@ -5,6 +5,8 @@ import { removeProductToLocal } from '../services/localStorage';
 import { convertedValue } from '../services/utils';
 import usePath from '../hooks/usePath';
 
+const CHECKOUT_PREFIX = 'customer_checkout__element-order-table';
+
 function TableProdCart() {
   const [dataStor, setDataStor] = useState([]);
   const [inCheckout, setInCheckout] = useState(false);
@@ -42,7 +44,7 @@ function TableProdCart() {
               <td
                 data-testid={
                   inCheckout
-                    ? `customer_checkout__element-order-table-item-number-${index}`
+                    ? `${CHECKOUT_PREFIX}-item-number-${index}`
                     : `customer_order_details__element-order-table-item-number-${index}`
                 }
               >
@@ -51,7 +53,7 @@ function TableProdCart() {
               <td
                 data-testid={
                   inCheckout
-                    ? `customer_checkout__element-order-table-name-${index}`
+                    ? `${CHECKOUT_PREFIX}-name-${index}`
                     : `customer_order_details__element-order-table-name-${index}`
                 }
               >
@@ -60,7 +62,7 @@ function TableProdCart() {
               <td
                 data-testid={
                   inCheckout
-                    ? `customer_checkout__element-order-table-quantity-${index}`
+                    ? `${CHECKOUT_PREFIX}-quantity-${index}`
                     : `customer_order_details__element-order-table-quantity-${index}`
                 }
               >
@@ -69,7 +71,7 @@ function TableProdCart() {
               <td
                 data-testid={
                   inCheckout
-                    ? `customer_checkout__element-order-table-unit-price-${index}`
+                    ? `${CHECKOUT_PREFIX}-unit-price-${index}`
                     : `customer_order_details__element-order-table-sub-total-${index}`
                 }
               >
@@ -78,7 +80,7 @@ function TableProdCart() {
               <td
                 data-testid={
                   inCheckout
-                    ? `customer_checkout__element-order-table-sub-total-${index}`
+                    ? `${CHECKOUT_PREFIX}-sub-total-${index}`
                     : `customer_order_details__element-order-total-price-${index}`
                 }
               >
@@ -87,13 +89,13 @@ function TableProdCart() {
               { inCheckout
                 && (
                   <td
-                    data-testid={ `customer_checkout__element-order-table-remove-
+                    data-testid={ `${CHECKOUT_PREFIX}-remove-
                   ${index}` }
                   >
                     <button
                       id={ id }
                       data-testid={
-                        `customer_checkout__element-order-table-remove-${index}`
+                        `${CHECKOUT_PREFIX}-remove-${index}`
                       }
                       type="button"
                       onClick={ () => {

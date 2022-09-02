@@ -10,13 +10,13 @@ function ShopCart() {
 
   useEffect(() => {
     if (products.length) {
-      const sumProdu = () => products.reduce((sum, item) => {
+      const sumProdu = products.reduce((sum, item) => {
         const { price, SaleProduct: { quantity } } = item;
         const totalShopCart = Number(price) * Number(quantity);
         sum += totalShopCart;
         return sum;
       }, 0);
-      return setShopCartValue(sumProdu());
+      return setShopCartValue(sumProdu);
     }
     return setShopCartValue(0);
   }, [products]);
