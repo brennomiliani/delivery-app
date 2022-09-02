@@ -44,6 +44,7 @@ function Checkout() {
     if (saveCart.length && user.adressInfo.sellerId) {
       const { sellerId, adress, number } = user.adressInfo;
       const objOrder = {
+        userId: user.id,
         sellerId,
         totalPrice: totalValue,
         deliveryAddress: adress,
@@ -56,6 +57,7 @@ function Checkout() {
         objOrder,
         { headers: { Authorization: user.token } },
       );
+      localStorage.removeItem('carrinho');
       history.push(`/customer/orders/${response.data.id}`);
     }
   };
