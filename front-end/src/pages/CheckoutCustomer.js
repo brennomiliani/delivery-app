@@ -61,8 +61,9 @@ function Checkout() {
     );
     localStorage.removeItem('carrinho');
     dispatch(saveProducts([]));
-
+    // navigate(`/customer/orders/${response.data.saleId}`);
     history.push(`/customer/orders/${response.data.saleId}`);
+    // return <Redirect to={ `/customer/orders/${response.data.saleId}` } />;
     // }
   };
 
