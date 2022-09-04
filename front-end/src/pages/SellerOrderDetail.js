@@ -3,7 +3,7 @@ import axios from 'axios';
 import NavBar from '../components/navBar';
 import usePath from '../hooks/usePath';
 import { getUserAcessFromLocal } from '../services/localStorage';
-import { convertedValue } from '../services/utils';
+import { convertedValue, sellerDate } from '../services/utils';
 
 function SellerOrderDetail() {
   const [order, setOrder] = useState({
@@ -14,25 +14,26 @@ function SellerOrderDetail() {
     const user = getUserAcessFromLocal();
     try {
       const response = await axios.get(`http://localhost:3001/seller/orders/${id}`, { headers: { Authorization: user.token } });
-      console.log(response);
+      console.log(response.data);
       setOrder(response.data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const sumItens = order.products.reduce((sum, item) => {
-    const { price, SaleProduct: { quantity } } = item;
-    const totalShopCart = Number(price) * Number(quantity);
-    sum += totalShopCart;
-    return sum;
-  }, 0);
+  // const totalPrice = order.products.reduce((sum, item) => {
+  //   const { price, SaleProduct: { quantity } } = item;
+  //   const totalShopCart = Number(price) * Number(quantity);
+  //   sum += totalShopCart;
+  //   return sum;
+  // }, 0);
 
   useEffect(() => {
     getOrderDetail();
   }, []);
 
-  const { status, saleDate, products } = order;
+  const { status, saleDate, products, totalPrice } = order;
+  const disabledButton = false;
 
   return (
     <div>
@@ -47,7 +48,7 @@ function SellerOrderDetail() {
         <h3
           data-testid="seller_order_details__element-order-details-label-order-date"
         >
-          { saleDate }
+          { sellerDate(saleDate) }
         </h3>
         <h3
           data-testid="seller_order_details__element-order-details-label-delivery-status"
@@ -55,14 +56,16 @@ function SellerOrderDetail() {
           { status }
         </h3>
         <button
-          data-testid="seller_order_details__button-preparing-check"
           type="button"
+          data-testid="seller_order_details__button-preparing-check"
+          disabled={ disabledButton }
         >
           Preparar Pedido
         </button>
         <button
-          data-testid="seller_order_details__button-dispatch-check"
           type="button"
+          data-testid="seller_order_details__button-dispatch-check"
+          disabled
         >
           Saiu para Entrega
         </button>
@@ -120,14 +123,18 @@ function SellerOrderDetail() {
             </tr>
           ))}
         </tbody>
+        {/* <tfoot>
+          <tr>
+            <td data-testis="seller_order_details__element-order-total-price"></td>
+          </tr>
+        </tfoot> */}
       </table>
-      <footer>
-        <h3
-          data-testis="seller_order_details__element-order-total-price"
-        >
-          { convertedValue(sumItens) }
-        </h3>
-      </footer>
+      <h3
+        data-testid="seller_order_details__element-order-total-price"
+      >
+        Total:
+        { totalPrice }
+      </h3>
     </div>
   );
 }
