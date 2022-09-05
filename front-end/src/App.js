@@ -8,6 +8,7 @@ import SellerOrderDetail from './pages/SellerOrderDetail';
 import CustomerOrdersPage from './pages/CustomerOrdersPage';
 import Checkout from './pages/CheckoutCustomer';
 import OrderDetailsCustomer from './pages/OrdDetailsCustomer';
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
 
       <Route path="/seller/orders/:id" component={ SellerOrderDetail } />
       <Route path="/seller/orders" component={ SellerOrdersPage } />
+
+      <Route path="/admin/manage" component={ Admin } />
+
     </Switch>
   );
 }

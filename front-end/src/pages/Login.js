@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import verifyValidation from '../validations/validateUser';
-import { addAcessUserToLocal } from '../services/localStorage';
+import { addAcessUserToLocal, getUserAcessFromLocal } from '../services/localStorage';
 
 const INITIAL_STATE = {
   inputEmail: '',
@@ -38,6 +38,19 @@ function Login() {
       setAlreadyCreated(true);
     }
   };
+
+  const getLastUser = () => {
+    const user = getUserAcessFromLocal();
+    if (user) {
+      if (user.role === 'customer') return history.push('/customer/products');
+      if (user.role === 'administrator') return history.push('/admin/manage');
+      history.push('/seller/orders');
+    }
+  };
+
+  useEffect(() => {
+    getLastUser();
+  }, []);
 
   useEffect(() => {
     setButtonData(!verifyValidation(userData));

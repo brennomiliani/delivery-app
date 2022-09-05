@@ -8,6 +8,7 @@ import { getUserAcessFromLocal } from '../services/localStorage';
 function NavBar() {
   const dispatch = useDispatch();
   const [inSellerRoute, setInSellerRoute] = useState(false);
+  const [inAdminRoute, setInAdminRoute] = useState(false);
   const { pathname } = usePath();
   const [userData, setUserData] = useState({ name: '', token: '' });
 
@@ -23,6 +24,9 @@ function NavBar() {
   const verifyRoute = () => {
     if (pathname.includes('/seller')) {
       setInSellerRoute(true);
+    }
+    if (pathname.includes('/admin')) {
+      setInAdminRoute(true);
     }
   };
 
@@ -42,7 +46,6 @@ function NavBar() {
           {
             !inSellerRoute
             && (
-              // <span >
               <Link
                 to="/customer/products"
                 className="nav_item"
@@ -50,7 +53,6 @@ function NavBar() {
               >
                 Produtos
               </Link>
-              // </span>
             )
           }
 
@@ -60,8 +62,11 @@ function NavBar() {
               data-testid="customer_products__element-navbar-link-orders"
             >
               {
-                inSellerRoute
-                  ? 'Pedidos'
+                inSellerRoute && 'Pedidos'
+              }
+              {
+                inAdminRoute
+                  ? 'Gerenciar Usuários'
                   : 'Meus Pedidos'
               }
             </Link>
