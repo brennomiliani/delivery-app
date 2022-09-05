@@ -14,4 +14,11 @@ const findBySale = async (req, res) => {
   res.status(StatusCodes.OK).json(response);
 };
 
-module.exports = { getAllSales, findBySale };
+const updateSaleStatus = async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  const response = await sellerService.updateSaleStatus(req.body, id);
+  res.status(StatusCodes.NO_CONTENT).json(response);
+};
+
+module.exports = { getAllSales, findBySale, updateSaleStatus };

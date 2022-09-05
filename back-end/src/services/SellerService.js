@@ -39,4 +39,13 @@ const findBySale = async (id) => {
   return result;
 };
 
-module.exports = { getAllSales, findBySale };
+const updateSaleStatus = async ({ status }, id) => {
+  try {
+    const result = await Sale.update({ status }, { where: { id } });
+    return result;
+  } catch (error) {
+    throw new HttpException(400, error.message);
+  }
+};
+
+module.exports = { getAllSales, findBySale, updateSaleStatus };

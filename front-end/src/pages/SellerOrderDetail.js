@@ -8,6 +8,7 @@ import { convertedValue, formatDate } from '../services/utils';
 function SellerOrderDetail() {
   const [order, setOrder] = useState({
     status: '', saleDate: '', totalPrice: 0, products: [] });
+  const [newStatus, setNewStatus] = useState('Pendente');
   const { id } = usePath();
 
   const getOrderDetail = async () => {
@@ -21,18 +22,17 @@ function SellerOrderDetail() {
     }
   };
 
-  // const totalPrice = order.products.reduce((sum, item) => {
-  //   const { price, SaleProduct: { quantity } } = item;
-  //   const totalShopCart = Number(price) * Number(quantity);
-  //   sum += totalShopCart;
-  //   return sum;
-  // }, 0);
+  const handleStatus = async ({ target }) => {
+    const { name } = target;
+    await axios.patch(`http://localhost:3001/seller/orders/${id}`, { headers: { Authorization: user.token } });
+    setNewStatus(name);
+  };
 
   useEffect(() => {
     getOrderDetail();
   }, []);
 
-  const { status, saleDate, products, totalPrice } = order;
+  const { saleDate, products, totalPrice } = order;
   const disabledButton = false;
 
   return (
@@ -53,18 +53,22 @@ function SellerOrderDetail() {
         <h3
           data-testid="seller_order_details__element-order-details-label-delivery-status"
         >
-          { status }
+          { newStatus }
         </h3>
         <button
           type="button"
+          name="Preparando"
           data-testid="seller_order_details__button-preparing-check"
+          onClick={ handleStatus }
           disabled={ disabledButton }
         >
           Preparar Pedido
         </button>
         <button
           type="button"
+          name="Em Trânsito"
           data-testid="seller_order_details__button-dispatch-check"
+          onClick={ handleStatus }
           disabled
         >
           Saiu para Entrega
@@ -123,11 +127,6 @@ function SellerOrderDetail() {
             </tr>
           ))}
         </tbody>
-        {/* <tfoot>
-          <tr>
-            <td data-testis="seller_order_details__element-order-total-price"></td>
-          </tr>
-        </tfoot> */}
       </table>
       <h3
         data-testid="seller_order_details__element-order-total-price"
