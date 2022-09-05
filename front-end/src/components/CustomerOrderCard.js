@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { convertedValue, formatDate } from '../services/utils';
 
 function CustomerOrderCard(item) {
   const { id, status, saleDate, totalPrice } = item;
@@ -12,11 +13,18 @@ function CustomerOrderCard(item) {
       </div>
       <h3 data-testid={ `customer_orders__element-delivery-status-${id}` }>{ status }</h3>
       <div>
-        <h3 data-testid={ `customer_orders__element-order-date-${id}` }>{ saleDate }</h3>
+        <h3
+          data-testid={
+            `customer_orders__element-order-date-${id}`
+          }
+        >
+          { formatDate(saleDate) }
+
+        </h3>
         <h3
           data-testid={ `customer_orders__element-card-price-${id}` }
         >
-          { totalPrice }
+          { convertedValue(totalPrice) }
         </h3>
       </div>
     </Link>
