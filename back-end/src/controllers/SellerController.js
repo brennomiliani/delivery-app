@@ -9,6 +9,7 @@ const getAllSales = async (_req, res) => {
 
 const findBySale = async (req, res) => {
   const { id } = req.params;
+  console.log(id);
   const response = await sellerService.findBySale(id);
   res.status(StatusCodes.OK).json(response);
 };
