@@ -10,7 +10,8 @@ import { getUserAcessFromLocal } from '../services/localStorage';
 
 function OrderDetailsCustomer() {
   const [totalValue, setTotalValue] = useState(0);
-  const [user, setUser] = useState({ token: ''});
+  // const [user, setUser] = useState({ token: ''});
+  const [newStatus, setNewStatus] = useState('Pendente');
   const [dataOrder, setDataOrder] = useState({ seller: { name: '' },
     saleDate: '',
     id: '',
@@ -34,17 +35,27 @@ function OrderDetailsCustomer() {
           return sum;
         }, 0);
         setTotalValue(sumProd);
+        setNewStatus(result.data.status);
       }
     } catch (error) {
       console.log(error);
     }
   };
 
+  const handleStatus = async ({ target }) => {
+    const userData = getUserAcessFromLocal();
+    const { name } = target;
+    await axios.patch(`http://localhost:3001/seller/orders/${id}`, { status: name }, { headers: { Authorization: userData.token } });
+    setNewStatus(name);
+  };
+
   useEffect(() => {
     const user = getUserAcessFromLocal();
-    setUser(user ? user : { token: ''});
+    // setUser(user ? user : { token: ''});
     getProductsOrder(user);
   }, []);
+
+  const prefix = 'customer_order_details';
 
   return (
     <div className="general-page">
@@ -71,15 +82,16 @@ function OrderDetailsCustomer() {
           { formatDate(dataOrder.saleDate) }
         </h2>
         <h2
-          data-testid={ `
-          customer_order_details__element-order-details-label-delivery-status` }
+          data-testid={ `${prefix}__element-order-details-label-delivery-status` }
         >
-          Status:
-          { dataOrder.status }
+          { newStatus }
         </h2>
         <button
           type="button"
           data-testid="customer_order_details__button-delivery-check"
+          name="Entregue"
+          onClick={ handleStatus }
+          disabled={ dataOrder.status !== 'Em Trânsito' }
         >
           Marcar como entregue
         </button>
@@ -100,3 +112,4 @@ function OrderDetailsCustomer() {
 }
 
 export default OrderDetailsCustomer;
+// aiai

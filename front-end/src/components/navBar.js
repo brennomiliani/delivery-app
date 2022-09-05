@@ -8,7 +8,7 @@ import { getUserAcessFromLocal } from '../services/localStorage';
 function NavBar() {
   const dispatch = useDispatch();
   const [inSellerRoute, setInSellerRoute] = useState(false);
-  const [inAdminRoute, setInAdminRoute] = useState(false);
+  // const [inAdminRoute, setInAdminRoute] = useState(false);
   const { pathname } = usePath();
   const [userData, setUserData] = useState({ name: '', token: '' });
 
@@ -25,9 +25,9 @@ function NavBar() {
     if (pathname.includes('/seller')) {
       setInSellerRoute(true);
     }
-    if (pathname.includes('/admin')) {
-      setInAdminRoute(true);
-    }
+    // if (pathname.includes('/admin')) {
+    //   setInAdminRoute(true);
+    // }
   };
 
   const logout = () => {
@@ -42,7 +42,7 @@ function NavBar() {
   return (
     <nav className="nav container">
       <div className="nav_menu" id="nav-menu">
-        <div className="nav_list grid">
+      <div className="nav_list grid">
           {
             !inSellerRoute
             && (
@@ -56,21 +56,29 @@ function NavBar() {
             )
           }
 
-          <span className="nav_item">
-            <Link
-              to={ inSellerRoute ? "/seller/orders" : "/customer/orders"}
-              data-testid="customer_products__element-navbar-link-orders"
-            >
-              {
-                inSellerRoute && 'Pedidos'
-              }
-              {
-                inAdminRoute
-                  ? 'Gerenciar Usuários'
-                  : 'Meus Pedidos'
-              }
-            </Link>
-          </span>
+          {
+            inSellerRoute
+              ? (
+                <span className="nav_item">
+                  <Link
+                    to="/seller/orders"
+                    data-testid="customer_products__element-navbar-link-orders"
+                  >
+                    Pedidos
+                  </Link>
+                </span>
+              )
+              : (
+                <span className="nav_item">
+                  <Link
+                    to="/customer/orders"
+                    data-testid="customer_products__element-navbar-link-orders"
+                  >
+                    Meus Pedidos
+                  </Link>
+                </span>
+              )
+          }
         </div>
         <div />
         <div className="nav_list grid">
