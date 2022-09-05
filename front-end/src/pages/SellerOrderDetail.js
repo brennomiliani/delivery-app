@@ -17,14 +17,16 @@ function SellerOrderDetail() {
       const response = await axios.get(`http://localhost:3001/seller/orders/${id}`, { headers: { Authorization: user.token } });
       console.log(response.data);
       setOrder(response.data);
+      setNewStatus(response.data.status);
     } catch (error) {
       console.log(error);
     }
   };
 
   const handleStatus = async ({ target }) => {
+    const user = getUserAcessFromLocal();
     const { name } = target;
-    await axios.patch(`http://localhost:3001/seller/orders/${id}`, { headers: { Authorization: user.token } });
+    await axios.patch(`http://localhost:3001/seller/orders/${id}`, { status: name }, { headers: { Authorization: user.token } });
     setNewStatus(name);
   };
 
@@ -33,7 +35,6 @@ function SellerOrderDetail() {
   }, []);
 
   const { saleDate, products, totalPrice } = order;
-  const disabledButton = false;
 
   return (
     <div>
@@ -60,7 +61,7 @@ function SellerOrderDetail() {
           name="Preparando"
           data-testid="seller_order_details__button-preparing-check"
           onClick={ handleStatus }
-          disabled={ disabledButton }
+          disabled={ newStatus === 'Preparando' }
         >
           Preparar Pedido
         </button>
@@ -69,7 +70,7 @@ function SellerOrderDetail() {
           name="Em Trânsito"
           data-testid="seller_order_details__button-dispatch-check"
           onClick={ handleStatus }
-          disabled
+          disabled={ newStatus !== 'Preparando' }
         >
           Saiu para Entrega
         </button>

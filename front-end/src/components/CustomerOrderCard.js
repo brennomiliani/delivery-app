@@ -12,7 +12,11 @@ function CustomerOrderCard(item) {
       </div>
       <h3 data-testid={ `customer_orders__element-delivery-status-${id}` }>{ status }</h3>
       <div>
-        <h3 data-testid={ `customer_orders__element-order-date-${id}` }>{ saleDate }</h3>
+        <h3
+          data-testid={ `customer_orders__element-order-date-${id}` }
+        >
+          { formatDate(saleDate) }
+        </h3>
         <h3
           data-testid={ `customer_orders__element-card-price-${id}` }
         >
