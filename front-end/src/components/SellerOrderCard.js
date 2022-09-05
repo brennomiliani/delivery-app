@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { formatDate } from '../services/utils';
 
 function SellerOrderCard(item) {
   const { id, status, saleDate, totalPrice, deliveryAddress } = item;
@@ -21,7 +22,7 @@ function SellerOrderCard(item) {
           <h3
             data-testid={ `seller_orders__element-order-date-${id}` }
           >
-            { saleDate }
+            { formatDate(saleDate) }
           </h3>
           <h3
             data-testid={ `seller_orders__element-card-price-${id}` }
