@@ -132,8 +132,7 @@ function SellerOrderDetail() {
       <h3
         data-testid="seller_order_details__element-order-total-price"
       >
-        Total:
-        { totalPrice }
+        { convertedValue(totalPrice) }
       </h3>
     </div>
   );

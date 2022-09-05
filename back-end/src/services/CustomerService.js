@@ -38,6 +38,17 @@ const checkout = async (body, { id: userId }) => {
 
 const getAllOrdersByClient = async (id) => {
   const products = await Sale.findAll({ where: { userId: id } });
+  
+  // const [{ 
+  //   userId,
+  //   sellerId,
+  //   totalPrice,
+  //   deliveryAddress,
+  //   deliveryNumber,
+  //   saleDate,
+  //   status,
+  // }] = products;
+  
   return products;
 };
 
