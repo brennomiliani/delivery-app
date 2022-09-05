@@ -54,18 +54,29 @@ function NavBar() {
             )
           }
 
-          <span className="nav_item">
-            <Link
-              to="/customer/orders"
-              data-testid="customer_products__element-navbar-link-orders"
-            >
-              {
-                inSellerRoute
-                  ? 'Pedidos'
-                  : 'Meus Pedidos'
-              }
-            </Link>
-          </span>
+          {
+            inSellerRoute
+              ? (
+                <span className="nav_item">
+                  <Link
+                    to="/seller/orders"
+                    data-testid="customer_products__element-navbar-link-orders"
+                  >
+                    Pedidos
+                  </Link>
+                </span>
+              )
+              : (
+                <span className="nav_item">
+                  <Link
+                    to="/customer/orders"
+                    data-testid="customer_products__element-navbar-link-orders"
+                  >
+                    Meus Pedidos
+                  </Link>
+                </span>
+              )
+          }
         </div>
         <div />
         <div className="nav_list grid">

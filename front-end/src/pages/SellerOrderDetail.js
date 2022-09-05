@@ -3,36 +3,38 @@ import axios from 'axios';
 import NavBar from '../components/navBar';
 import usePath from '../hooks/usePath';
 import { getUserAcessFromLocal } from '../services/localStorage';
-import { convertedValue } from '../services/utils';
+import { convertedValue, formatDate } from '../services/utils';
 
 function SellerOrderDetail() {
   const [order, setOrder] = useState({
     status: '', saleDate: '', totalPrice: 0, products: [] });
+  const [newStatus, setNewStatus] = useState('Pendente');
   const { id } = usePath();
 
   const getOrderDetail = async () => {
     const user = getUserAcessFromLocal();
     try {
       const response = await axios.get(`http://localhost:3001/seller/orders/${id}`, { headers: { Authorization: user.token } });
-      console.log(response);
+      console.log(response.data);
       setOrder(response.data);
+      setNewStatus(response.data.status);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const sumItens = order.products.reduce((sum, item) => {
-    const { price, SaleProduct: { quantity } } = item;
-    const totalShopCart = Number(price) * Number(quantity);
-    sum += totalShopCart;
-    return sum;
-  }, 0);
+  const handleStatus = async ({ target }) => {
+    const user = getUserAcessFromLocal();
+    const { name } = target;
+    await axios.patch(`http://localhost:3001/seller/orders/${id}`, { status: name }, { headers: { Authorization: user.token } });
+    setNewStatus(name);
+  };
 
   useEffect(() => {
     getOrderDetail();
   }, []);
 
-  const { status, saleDate, products } = order;
+  const { saleDate, products, totalPrice } = order;
 
   return (
     <div>
@@ -47,22 +49,28 @@ function SellerOrderDetail() {
         <h3
           data-testid="seller_order_details__element-order-details-label-order-date"
         >
-          { saleDate }
+          { formatDate(saleDate) }
         </h3>
         <h3
           data-testid="seller_order_details__element-order-details-label-delivery-status"
         >
-          { status }
+          { newStatus }
         </h3>
         <button
-          data-testid="seller_order_details__button-preparing-check"
           type="button"
+          name="Preparando"
+          data-testid="seller_order_details__button-preparing-check"
+          onClick={ handleStatus }
+          disabled={ newStatus === 'Preparando' }
         >
           Preparar Pedido
         </button>
         <button
-          data-testid="seller_order_details__button-dispatch-check"
           type="button"
+          name="Em Trânsito"
+          data-testid="seller_order_details__button-dispatch-check"
+          onClick={ handleStatus }
+          disabled={ newStatus !== 'Preparando' }
         >
           Saiu para Entrega
         </button>
@@ -121,15 +129,14 @@ function SellerOrderDetail() {
           ))}
         </tbody>
       </table>
-      <footer>
-        <h3
-          data-testis="seller_order_details__element-order-total-price"
-        >
-          { convertedValue(sumItens) }
-        </h3>
-      </footer>
+      <h3
+        data-testid="seller_order_details__element-order-total-price"
+      >
+        { convertedValue(totalPrice) }
+      </h3>
     </div>
   );
 }
 
 export default SellerOrderDetail;
+//
