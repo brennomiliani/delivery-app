@@ -3,7 +3,7 @@ import axios from 'axios';
 import NavBar from '../components/navBar';
 import usePath from '../hooks/usePath';
 import { getUserAcessFromLocal } from '../services/localStorage';
-import { convertedValue, sellerDate } from '../services/utils';
+import { convertedValue, formatDate } from '../services/utils';
 
 function SellerOrderDetail() {
   const [order, setOrder] = useState({
@@ -48,7 +48,7 @@ function SellerOrderDetail() {
         <h3
           data-testid="seller_order_details__element-order-details-label-order-date"
         >
-          { sellerDate(saleDate) }
+          { formatDate(saleDate) }
         </h3>
         <h3
           data-testid="seller_order_details__element-order-details-label-delivery-status"
