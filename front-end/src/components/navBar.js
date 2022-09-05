@@ -58,7 +58,7 @@ function NavBar() {
 
           <span className="nav_item">
             <Link
-              to="/customer/orders"
+              to={ inSellerRoute ? "/seller/orders" : "/customer/orders"}
               data-testid="customer_products__element-navbar-link-orders"
             >
               {

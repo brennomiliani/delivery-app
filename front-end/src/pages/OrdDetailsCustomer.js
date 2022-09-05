@@ -52,23 +52,35 @@ function OrderDetailsCustomer() {
       <h1>Detalhes do Pedido</h1>
 
       <div>
-        <h3>
+        <h3
+          data-testid={
+            `customer_order_details__element-order-details-label-order-${dataOrder.id}`
+          }
+        >
           Pedido:
           { dataOrder.id }
         </h3>
-        <h2>
+        <h2
+          data-testid="customer_order_details__element-order-details-label-seller-name"
+        >
           P.Vendedora:
           { dataOrder.seller.name }
         </h2>
-        <h2>
+        <h2 data-testid="customer_order_details__element-order-details-label-order-date">
           Data:
           { formatDate(dataOrder.saleDate) }
         </h2>
-        <h2>
+        <h2
+          data-testid={ `
+          customer_order_details__element-order-details-label-delivery-status` }
+        >
           Status:
           { dataOrder.status }
         </h2>
-        <button type="button">
+        <button
+          type="button"
+          data-testid="customer_order_details__button-delivery-check"
+        >
           Marcar como entregue
         </button>
       </div>
