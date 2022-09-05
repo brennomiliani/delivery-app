@@ -40,6 +40,7 @@ const findBySale = async (id) => {
 };
 
 const updateSaleStatus = async ({ status }, id) => {
+  if (!status) throw new HttpException(400, 'Status is Required');
   try {
     const result = await Sale.update({ status }, { where: { id } });
     return result;
