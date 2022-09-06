@@ -62,7 +62,9 @@ function OrderDetailsCustomer() {
 
       <div>
         <h3
-          data-testid="customer_order_details__element-order-details-label-order-id"
+          data-testid={
+            `customer_order_details__element-order-details-label-order-id-${id}`
+          }
         >
           Pedido:
           { id }
