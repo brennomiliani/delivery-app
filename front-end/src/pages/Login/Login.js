@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import verifyValidation from '../validations/validateUser';
-import { addAcessUserToLocal, getUserAcessFromLocal } from '../services/localStorage';
+import * as S from './styles';
+import verifyValidation from '../../validations/validateUser';
+import { addAcessUserToLocal, getUserAcessFromLocal } from '../../services/localStorage';
+import image from '../../images/image.png';
 
 const INITIAL_STATE = {
   inputEmail: '',
@@ -58,47 +60,49 @@ function Login() {
 
   return (
     <div>
-      <h1>Login</h1>
-      <form>
-        <input
-          type="email"
-          name="inputEmail"
-          placeholder="Digite seu E-mail"
-          data-testid="common_login__input-email"
-          value={ inputEmail }
-          onChange={ handleInput }
-          autoComplete="off"
-        />
-        <input
-          type="password"
-          name="inputPassword"
-          placeholder="Digite sua Senha"
-          data-testid="common_login__input-password"
-          value={ inputPassword }
-          onChange={ handleInput }
-        />
-        <button
-          type="button"
-          data-testid="common_login__button-login"
-          disabled={ buttonData }
-          onClick={ handleClick }
-        >
-          Acessar
-        </button>
-        <button
-          type="button"
-          data-testid="common_login__button-register"
-          onClick={ () => history.push('/register') }
-        >
-          Criar Conta
-        </button>
-        <span
-          data-testid="common_login__element-invalid-email"
-          style={ { display: !alreadyCreated && 'none' } }
-        >
-          Usuário não cadastrado!
-        </span>
-      </form>
+      <S.Form>
+        <form>
+          <img type="image" src={ image } alt="home Page" />
+          <input
+            type="email"
+            name="inputEmail"
+            placeholder="Digite seu E-mail"
+            data-testid="common_login__input-email"
+            value={ inputEmail }
+            onChange={ handleInput }
+            autoComplete="off"
+          />
+          <input
+            type="password"
+            name="inputPassword"
+            placeholder="Digite sua Senha"
+            data-testid="common_login__input-password"
+            value={ inputPassword }
+            onChange={ handleInput }
+          />
+          <button
+            type="button"
+            data-testid="common_login__button-login"
+            disabled={ buttonData }
+            onClick={ handleClick }
+          >
+            Acessar
+          </button>
+          <button
+            type="button"
+            data-testid="common_login__button-register"
+            onClick={ () => history.push('/register') }
+          >
+            Criar Conta
+          </button>
+          <span
+            data-testid="common_login__element-invalid-email"
+            style={ { display: !alreadyCreated && 'none' } }
+          >
+            Usuário não cadastrado!
+          </span>
+        </form>
+      </S.Form>
     </div>
   );
 }
