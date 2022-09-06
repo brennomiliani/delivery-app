@@ -55,6 +55,7 @@ function OrderDetailsCustomer() {
     getProductsOrder(user);
   }, []);
 
+
   const prefix = 'customer_order_details';
 
   return (

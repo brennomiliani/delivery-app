@@ -64,6 +64,16 @@ function Admin() {
         >
           Usuário não cadastrado!
         </span> */}
+
+      <div className="section-btns">
+        <button
+          type="button"
+          data-testid="admin_manage__button-register"
+          className="button-general button--flex"
+        >
+          Cadastrar
+        </button>
+      </div>
       </form>
 
     </div>

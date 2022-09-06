@@ -16,7 +16,7 @@ const findBySale = async (req, res) => {
 
 const updateSaleStatus = async (req, res) => {
   const { id } = req.params;
-  console.log(id);
+  console.log(req.body);
   const response = await sellerService.updateSaleStatus(req.body, id);
   res.status(StatusCodes.NO_CONTENT).json(response);
 };
