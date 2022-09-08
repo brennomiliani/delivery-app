@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import * as S from './Login/styles';
 import verifyValidation from '../validations/validateUser';
 import { saveUser } from '../redux/actions/index';
 import { addAcessUserToLocal } from '../services/localStorage';
@@ -49,58 +50,50 @@ function SignIn() {
 
   return (
     <div className="general-page">
-      <div>
-        <h1 className="main-title home-main-title">LogoAqui</h1>
-      </div>
-      <div>
-        <h1 className="h1-title">Crie a sua conta!</h1>
-      </div>
-
-      <section>
-        <input
-          type="text"
-          data-testid="common_register__input-name"
-          onChange={ handleInput }
-          value={ inputName }
-          name="inputName"
-          placeholder="Nome Completo(mínimo 12 caracteres)"
-        />
-        <input
-          type="text"
-          data-testid="common_register__input-email"
-          onChange={ handleInput }
-          value={ inputEmail }
-          name="inputEmail"
-          placeholder="Email"
-        />
-        <input
-          type="password"
-          data-testid="common_register__input-password"
-          onChange={ handleInput }
-          value={ inputPassword }
-          name="inputPassword"
-          placeholder="Senha (mínimo 6 caracteres)"
-        />
-      </section>
-
-      <span
-        data-testid="common_register__element-invalid_register"
-        style={ { display: !alreadyCreated && 'none' } }
-      >
-        O usuário já possui cadastro!
-      </span>
-
-      <div className="section-btns">
-        <button
-          type="button"
-          data-testid="common_register__button-register"
-          className="button-general button--flex"
-          onClick={ handleClick }
-          disabled={ isDisabled }
-        >
-          Cadastrar
-        </button>
-      </div>
+      <S.Form>
+        <form>
+          <h1 className="h1-title">Crie a sua conta!</h1>
+          <input
+            type="text"
+            data-testid="common_register__input-name"
+            onChange={ handleInput }
+            value={ inputName }
+            name="inputName"
+            placeholder="Nome Completo(mínimo 12 caracteres)"
+          />
+          <input
+            type="text"
+            data-testid="common_register__input-email"
+            onChange={ handleInput }
+            value={ inputEmail }
+            name="inputEmail"
+            placeholder="Email"
+          />
+          <input
+            type="password"
+            data-testid="common_register__input-password"
+            onChange={ handleInput }
+            value={ inputPassword }
+            name="inputPassword"
+            placeholder="Senha (mínimo 6 caracteres)"
+          />
+          <button
+            type="button"
+            data-testid="common_register__button-register"
+            className="button-general button--flex"
+            onClick={ handleClick }
+            disabled={ isDisabled }
+          >
+            Cadastrar
+          </button>
+          <span
+            data-testid="common_register__element-invalid_register"
+            style={ { display: !alreadyCreated && 'none' } }
+          >
+            O usuário já possui cadastro!
+          </span>
+        </form>
+      </S.Form>
     </div>
   );
 }

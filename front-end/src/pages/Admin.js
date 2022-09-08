@@ -14,12 +14,9 @@ function Admin() {
   const [userData, setUserData] = useState(INITIAL_STATE);
   // const [alreadyCreated, setAlreadyCreated] = useState(false);
   const { email, name, password } = userData;
-
-  const handleInput = ({ target: { name, value } }) => {
-    setUserData((prev) => ({ ...prev, [name]: value }));
+  const handleInput = ({ target: { name: nameInput, value } }) => {
+    setUserData((prev) => ({ ...prev, [nameInput]: value }));
   };
-
-
   return (
     <div className="general-page">
       <NavBar />
@@ -64,20 +61,17 @@ function Admin() {
         >
           Usuário não cadastrado!
         </span> */}
-
-      <div className="section-btns">
-        <button
-          type="button"
-          data-testid="admin_manage__button-register"
-          className="button-general button--flex"
-        >
-          Cadastrar
-        </button>
-      </div>
+        <div className="section-btns">
+          <button
+            type="button"
+            data-testid="admin_manage__button-register"
+            className="button-general button--flex"
+          >
+            Cadastrar
+          </button>
+        </div>
       </form>
-
     </div>
   );
 }
-
 export default Admin;

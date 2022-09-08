@@ -16,7 +16,6 @@ const findAllUsersButAdmin = async ({ email, password }) => {
   }
   const { name, role } = userFound;
   if (role !== 'administrator') throw new HttpException(UNAUTHORIZED, 'user must be admin');
-  console.log(role);
   generateJWTToken({ name, email, role });
   const allUsers = await User.findAll();
   return allUsers;
