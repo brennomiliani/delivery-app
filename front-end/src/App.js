@@ -29,21 +29,12 @@ function App() {
         />
         <Route path="/customer/orders" component={ CustomerOrdersPage } />
 
-<<<<<<< HEAD
-      <Route path="/seller/orders/:id" component={ SellerOrderDetail } />
-      <Route path="/seller/orders" component={ SellerOrdersPage } />
-
-      <Route path="/admin/manage" component={ Admin } />
-
-    </Switch>
-=======
         <Route path="/seller/orders/:id" component={ SellerOrderDetail } />
         <Route path="/seller/orders" component={ SellerOrdersPage } />
         <Route path="/admin/manage" component={ Admin } />
       </Switch>
       <GlobalStyles />
     </ThemeProvider>
->>>>>>> 608284d5fe982492267432a3df4245af6fdc3202
   );
 }
 
