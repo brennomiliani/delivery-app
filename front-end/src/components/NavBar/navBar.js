@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import usePath from '../hooks/usePath';
-import { saveUser } from '../redux/actions';
-import { getUserAcessFromLocal } from '../services/localStorage';
+import usePath from '../../hooks/usePath';
+import { saveUser } from '../../redux/actions';
+import * as S from './styles';
+import { getUserAcessFromLocal } from '../../services/localStorage';
 
 function NavBar() {
   const dispatch = useDispatch();
@@ -36,13 +37,14 @@ function NavBar() {
   }, []);
 
   return (
-    <nav className="nav container">
+    <S.NavBar className="nav container">
       <div className="nav_menu" id="nav-menu">
         <div className="nav_list grid">
-          {
-            !inSellerRoute
+          <div className="nav-item">
+
+            {
+              !inSellerRoute
             && (
-              // <span >
               <Link
                 to="/customer/products"
                 className="nav_item"
@@ -50,54 +52,55 @@ function NavBar() {
               >
                 Produtos
               </Link>
-              // </span>
             )
-          }
-
-          {
-            inSellerRoute
-              ? (
-                <span className="nav_item">
+            }
+          </div>
+          <div className="nav-item">
+            {
+              inSellerRoute
+                ? (
                   <Link
                     to="/seller/orders"
                     data-testid="customer_products__element-navbar-link-orders"
                   >
                     Pedidos
                   </Link>
-                </span>
-              )
-              : (
-                <span className="nav_item">
+
+                )
+                : (
                   <Link
                     to="/customer/orders"
                     data-testid="customer_products__element-navbar-link-orders"
                   >
                     Meus Pedidos
                   </Link>
-                </span>
-              )
-          }
+                )
+            }
+          </div>
         </div>
-        <div />
         <div className="nav_list grid">
-          <span
-            className="nav_item"
-            data-testid="customer_products__element-navbar-user-full-name"
-          >
-            { userData.name }
-          </span>
+          <div className="nav-item customer">
+            <span
+              data-testid="customer_products__element-navbar-user-full-name"
+            >
+              { userData.name }
+            </span>
+          </div>
 
-          <Link
-            to="/login"
-            data-testid="customer_products__element-navbar-link-logout"
-            onClick={ () => logout() }
-            className="nav_item"
-          >
-            Sair
-          </Link>
+          <div className="nav-item">
+
+            <Link
+              className="exit"
+              to="/login"
+              data-testid="customer_products__element-navbar-link-logout"
+              onClick={ () => logout() }
+            >
+              Sair
+            </Link>
+          </div>
         </div>
       </div>
-    </nav>
+    </S.NavBar>
   );
 }
 

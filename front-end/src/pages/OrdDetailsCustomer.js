@@ -5,7 +5,7 @@ import { saveProducts } from '../redux/actions';
 import TableProdCart from '../components/table';
 import { convertedValue, formatDate } from '../services/utils';
 import usePath from '../hooks/usePath';
-import NavBar from '../components/navBar';
+import NavBar from '../components/NavBar/navBar';
 import { getUserAcessFromLocal } from '../services/localStorage';
 
 function OrderDetailsCustomer() {

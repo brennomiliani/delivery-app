@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import axios from 'axios';
-import NavBar from '../components/navBar';
+import NavBar from '../components/NavBar/navBar';
 
 const INITIAL_STATE = {
   email: '',

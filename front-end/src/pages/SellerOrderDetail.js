@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import NavBar from '../components/navBar';
+import NavBar from '../components/NavBar/navBar';
 import usePath from '../hooks/usePath';
 import { getUserAcessFromLocal } from '../services/localStorage';
 import { convertedValue, formatDate } from '../services/utils';

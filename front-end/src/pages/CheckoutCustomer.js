@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import NavBar from '../components/navBar';
+import NavBar from '../components/NavBar/navBar';
 import { getShopCartFromLocal } from '../services/localStorage';
 import { rmShopCart, saveProducts } from '../redux/actions';
 import TableProdCart from '../components/table';
