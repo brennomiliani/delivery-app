@@ -7,7 +7,7 @@ import Products from './pages/Products';
 import SellerOrdersPage from './pages/SellerOrdersPage';
 import SellerOrderDetail from './pages/SellerOrderDetail';
 import CustomerOrdersPage from './pages/CustomerOrdersPage';
-import Checkout from './pages/CheckoutCustomer';
+import Checkout from './pages/CheckoutCustomer/CheckoutCustomer';
 import OrderDetailsCustomer from './pages/OrdDetailsCustomer';
 import Admin from './pages/Admin';
 import defaultTheme from './assets/styles/themes/Default';

@@ -55,7 +55,7 @@ function CardAdress() {
           </select>
         </label>
       </div>
-      <div>
+      <div className="address-container">
         <label htmlFor="address">
           Endereço
           <input
@@ -69,7 +69,7 @@ function CardAdress() {
         </label>
       </div>
 
-      <div>
+      <div className="number-container">
         <label htmlFor="number">
           Número
           <input
