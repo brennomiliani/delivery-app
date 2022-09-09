@@ -9,11 +9,6 @@ export const Main = styled.div`
 
 export const CardProduct = styled.div`
 
-    /* background-color: #ffffff;
-    align-items: center;
-    margin-bottom: 20px;
-    border-radius: 20px; */
-
   display: flex;
   
   flex-direction: column;
@@ -23,7 +18,7 @@ export const CardProduct = styled.div`
   box-shadow: rgba(130, 130, 200, 0.35) 2px 2px 2px 5px;
   /* box-shadow: rgba(0, 0, 0, 0.35) 5px 5px 15px 5px; */
   background-color: rgb(51, 51, 68);
-  width: 20%;
+  width: ${(props) => props.theme.sizes.buttonSize};
   border-radius: 20px;
 
     h3 {
@@ -83,7 +78,7 @@ export const CardProduct = styled.div`
     }
 
     input {
-      max-width: ${(props) => props.theme.sizes.smallInputfontSize};;
+      max-width: ${(props) => props.theme.sizes.smallfontSize};;
       height: 40px;
       margin: 0px 0px 15px;
       background-color: transparent;

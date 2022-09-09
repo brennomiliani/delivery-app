@@ -16,6 +16,5 @@ export default {
     smallfontSize: 'var(--small-font-size)',
     smallInputfontSize: 'var(--small-width)',
     buttonSize: 'var(--button-width)',
-
   }
 };
