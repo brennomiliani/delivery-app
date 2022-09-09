@@ -8,6 +8,7 @@ const INITIAL_STATE = {
   type: '',
   name: '',
 };
+
 function Admin() {
   const userType = ['Vendedor'];
   const [userData, setUserData] = useState(INITIAL_STATE);
@@ -45,14 +46,14 @@ function Admin() {
           placeholder="Senha (mínimo 6 caracteres)"
         />
         <select
-          data-testid="admin_manage__select-role"
-          defaultValue={ userType[0] }
-          name="type"
-          // onChange={ }
+            data-testid="admin_manage__select-role"
+            defaultValue={ userType[0] }
+            name="type"
+            // onChange={ }
         >
-          { userType.length && userType.map((user, index) => (
+        { userType.length && userType.map((user, index) => (
             <option key={ index } value={ user }>{user}</option>
-          ))}
+        ))}
         </select>
         {/* <span
           data-testid="common_login__element-invalid-email"

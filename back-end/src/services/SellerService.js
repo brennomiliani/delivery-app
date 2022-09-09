@@ -42,6 +42,7 @@ const findBySale = async (id) => {
 const updateSaleStatus = async ({ status }, id) => {
   try {
     const result = await Sale.update({ status }, { where: { id } });
+    console.log(result);
     return result;
   } catch (error) {
     throw new HttpException(400, error.message);

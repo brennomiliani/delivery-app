@@ -8,7 +8,8 @@ import { getUserAcessFromLocal } from '../../services/localStorage';
 
 function NavBar() {
   const dispatch = useDispatch();
-  const [inSellerRoute, setInSellerRoute] = useState(false);
+  const [inSellerRoute, setInSellerRoute] = useState('false');
+  // const [inAdminRoute, setInAdminRoute] = useState(false);
   const { pathname } = usePath();
   const [userData, setUserData] = useState({ name: '', token: '' });
 
@@ -25,6 +26,9 @@ function NavBar() {
     if (pathname.includes('/seller')) {
       setInSellerRoute(true);
     }
+    // if (pathname.includes('/admin')) {
+    //   setInAdminRoute(true);
+    // }
   };
 
   const logout = () => {

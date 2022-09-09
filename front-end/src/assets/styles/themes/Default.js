@@ -9,4 +9,12 @@ export default {
       hoverButtonBackground: '#F0D971',
     },
   },
+  sizes: {
+    h3fontSize: 'var(--h3-font-size)',
+    h2fontSize: 'var(--h2-font-size)',
+    h1fontSize: 'var(--h1-font-size)',
+    smallfontSize: 'var(--small-font-size)',
+    smallInputfontSize: 'var(--small-width)',
+    buttonSize: 'var(--button-width)',
+  }
 };
