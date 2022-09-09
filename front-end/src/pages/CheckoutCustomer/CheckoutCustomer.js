@@ -83,7 +83,7 @@ function Checkout() {
           </span>
         </div>
 
-        <div>
+        <section>
           <h3>Detalhes e Endereço para Entrega</h3>
           <div className="end-order-container">
 
@@ -99,7 +99,7 @@ function Checkout() {
               Finalizar Pedido
             </button>
           </div>
-        </div>
+        </section>
       </S.Checkout>
     </>
   );

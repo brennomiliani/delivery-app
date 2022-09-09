@@ -14,16 +14,22 @@ export const Checkout = styled.div`
   color: white;
   background: #282a36;
   
+  section {
+    width: 95%;
+    h3 {
+      margin-bottom: 10px;
+    }
+  }
 
   div.end-order-container {
-    width: 95%;
+    width: 100;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     border: 1px solid ${(props) => props.theme.colors.primary.borderColor};
     border-radius: 3px;
-    height: 12vh;
+    height: 35%;
     font-size: 12px;
     
     form {
@@ -32,6 +38,7 @@ export const Checkout = styled.div`
       align-items: center;
       justify-content: center;
       border-radius: 3px;
+      margin-bottom: 10px;
 
       * {
         margin: 0 1vw;
@@ -55,8 +62,17 @@ export const Checkout = styled.div`
         }
       }
 
+      div {
+        min-height: 65px;
+        display: flex;
+        align-items: flex-end;
+      }
+
       div.address-container {
-        width: 50%
+        width: 50%;
+        * {
+          width: 100%;
+        }
       }
 
       div.number-container {
@@ -73,6 +89,8 @@ export const Checkout = styled.div`
       color: #000;
       padding: 10px 18px;
       font-size: 16px;
+      border: none;
+      margin-bottom: 10px;
 
     :hover {
       color: #000;
