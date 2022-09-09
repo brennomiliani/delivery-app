@@ -10,13 +10,11 @@ import { getUserAcessFromLocal } from '../services/localStorage';
 
 function OrderDetailsCustomer() {
   const [totalValue, setTotalValue] = useState(0);
-  // const [user, setUser] = useState({ token: ''});
   const [newStatus, setNewStatus] = useState('Pendente');
   const [dataOrder, setDataOrder] = useState({ seller: { name: '' },
     saleDate: '',
     id: '',
     status: '' });
-  // const user = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
   const { id } = usePath();
@@ -51,7 +49,6 @@ function OrderDetailsCustomer() {
 
   useEffect(() => {
     const user = getUserAcessFromLocal();
-    // setUser(user ? user : { token: ''});
     getProductsOrder(user);
   }, []);
 

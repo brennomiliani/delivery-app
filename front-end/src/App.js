@@ -3,7 +3,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import Register from './pages/Register';
 import Login from './pages/Login/Login';
-import Products from './pages/Products';
+import Products from './pages/Products/Products';
 import SellerOrdersPage from './pages/SellerOrdersPage';
 import SellerOrderDetail from './pages/SellerOrderDetail';
 import CustomerOrdersPage from './pages/CustomerOrdersPage';
