@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import Card from '../components/card';
-import NavBar from '../components/NavBar/navBar';
+import Card from '../../components/card';
+import NavBar from '../../components/NavBar/navBar';
 // import mockProducts from '../mocks/mockProducts';
 import { getShopCartFromLocal } from '../../services/localStorage';
 import { saveProducts } from '../../redux/actions';

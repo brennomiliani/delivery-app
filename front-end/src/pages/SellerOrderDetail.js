@@ -4,6 +4,7 @@ import NavBar from '../components/NavBar/navBar';
 import usePath from '../hooks/usePath';
 import { getUserAcessFromLocal } from '../services/localStorage';
 import { convertedValue, formatDate } from '../services/utils';
+import { ProductsTable } from '../components/shared/ProductsTable';
 
 function SellerOrderDetail() {
   const [order, setOrder] = useState({
@@ -75,11 +76,11 @@ function SellerOrderDetail() {
           Saiu para Entrega
         </button>
       </section>
-      <table>
+      <ProductsTable>
         <thead>
           <tr>
             <th>Item</th>
-            <th>Descrição</th>
+            <th className="table-head-name">Descrição</th>
             <th>Quantidade</th>
             <th>Valor unitário</th>
             <th>Sub-total</th>
@@ -92,6 +93,7 @@ function SellerOrderDetail() {
                 data-testid={
                   `seller_order_details__element-order-table-item-number-${index}`
                 }
+                className="index-table-item"
               >
                 {index + 1 }
               </td>
@@ -99,6 +101,7 @@ function SellerOrderDetail() {
                 data-testid={
                   `seller_order_details__element-order-table-name-${index}`
                 }
+                className="name-table-item"
               >
                 { product.name }
               </td>
@@ -106,6 +109,7 @@ function SellerOrderDetail() {
                 data-testid={
                   `seller_order_details__element-order-table-quantity-${index}`
                 }
+                className="quantity-table-item"
               >
                 { product.SaleProduct.quantity }
               </td>
@@ -113,6 +117,7 @@ function SellerOrderDetail() {
                 data-testid={
                   `seller_order_details__element-order-table-unit-price-${index}`
                 }
+                className="price-table-item"
               >
                 { product.price }
               </td>
@@ -120,6 +125,7 @@ function SellerOrderDetail() {
                 data-testid={
                   `seller_order_details__element-order-table-sub-total-${index}`
                 }
+                className="total-table-item"
               >
                 {convertedValue(
                   (+product.SaleProduct.quantity) * (+product.price),
@@ -128,7 +134,7 @@ function SellerOrderDetail() {
             </tr>
           ))}
         </tbody>
-      </table>
+      </ProductsTable>
       <h3
         data-testid="seller_order_details__element-order-total-price"
       >

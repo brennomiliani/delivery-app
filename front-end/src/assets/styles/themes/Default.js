@@ -7,6 +7,7 @@ export default {
       disabledButtonBackground: '#C3C0B4',
       activeButtonBackground: '#B68A04',
       hoverButtonBackground: '#F0D971',
+      orderCardBackground: 'rgb(51, 51 ,68)',
     },
   },
   sizes: {
@@ -16,5 +17,5 @@ export default {
     smallfontSize: 'var(--small-font-size)',
     smallInputfontSize: 'var(--small-width)',
     buttonSize: 'var(--button-width)',
-  }
+  },
 };
