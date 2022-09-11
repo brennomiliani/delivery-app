@@ -73,7 +73,7 @@ export const OrderCard = styled.div`
 
     :hover{
       border-radius: 8px;
-      transition: all 0.3s ease-in-out;
+      transition: all 0.2s ease-in-out;
       border: 1px solid ${(props) => props.theme.colors.primary.hoverButtonBackground};
       }
   }

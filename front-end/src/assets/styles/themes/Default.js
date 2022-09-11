@@ -8,6 +8,7 @@ export default {
       activeButtonBackground: '#B68A04',
       hoverButtonBackground: '#F0D971',
       orderCardBackground: 'rgb(51, 51 ,68)',
+      greyTableCell: '#3D3B30',
     },
   },
   sizes: {

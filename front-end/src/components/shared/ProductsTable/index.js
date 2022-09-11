@@ -1,9 +1,14 @@
 import styled from 'styled-components';
 
+export const MainDiv = styled.div`
+  height: 450vh;
+`;
+
 export const ProductsTable = styled.table`
   width: 100%;
-  height: 100%;
 
+  border-collapse: separate;
+  border-spacing: 0px 10px;
   border-radius: 8px;
 
   background-color: #ffffff;
@@ -11,8 +16,14 @@ export const ProductsTable = styled.table`
   thead{
     border-radius: 8px;
 
+    th.table-head{
+      border-right: 1px solid #000000;
+    }
+
     th.table-head-name{
+      height: 30px;
       width: 60%;
+      border-right: 1px solid #000000;
     }
   }
 
@@ -20,42 +31,41 @@ export const ProductsTable = styled.table`
     text-align: center;
     font-weight: bold;
 
-    tr{
-      row-gap: 10px;
-    }
-
     td.index-table-item{
+      height: 45px;
       width: 4%;
-      height: 35px;
-      background-color: #697623;
-      border-radius: 8px;
+
+      border-radius: 8px 0px 0px 8px;
+
+      background-color: ${(props) => props.theme.colors.primary.borderColor};
     }
 
     td.name-table-item{
-      background-color: #569715;
-      padding: 5px;
       text-align: center;
-      border-radius: 8px;
+
+      background-color: ${(props) => props.theme.colors.primary.activeButtonBackground};;
     }
 
     td.quantity-table-item{
       width: 10%;
-      background-color: #6978;
-      border-radius: 8px;
+
+      background-color: ${(props) => props.theme.colors.primary.disabledButtonBackground};
     }
 
     td.price-table-item{
       width: 10%;
-      background-color: #3987;
-      border-radius: 8px;
+
+      background-color: ${(props) => props.theme.colors.primary.greyTableCell};
+      color: #FFFFFF;
     }
 
     td.total-table-item{
       width: 10%;
-      background-color: #032684;
-      border-radius: 8px;
+
+      border-radius: 0px 8px 8px 0px;
+
+      background-color: #000000;
+      color: #FFFFFF;
     }
   }
 `;
-
-export const abc = styled.div``;

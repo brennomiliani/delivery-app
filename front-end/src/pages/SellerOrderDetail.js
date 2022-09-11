@@ -4,7 +4,7 @@ import NavBar from '../components/NavBar/navBar';
 import usePath from '../hooks/usePath';
 import { getUserAcessFromLocal } from '../services/localStorage';
 import { convertedValue, formatDate } from '../services/utils';
-import { ProductsTable } from '../components/shared/ProductsTable';
+import { ProductsTable, MainDiv } from '../components/shared/ProductsTable';
 
 function SellerOrderDetail() {
   const [order, setOrder] = useState({
@@ -38,7 +38,7 @@ function SellerOrderDetail() {
   const { saleDate, products, totalPrice } = order;
 
   return (
-    <div>
+    <MainDiv>
       <NavBar />
       <section>
         <h2>Detalhes do Pedido</h2>
@@ -79,10 +79,10 @@ function SellerOrderDetail() {
       <ProductsTable>
         <thead>
           <tr>
-            <th>Item</th>
+            <th className="table-head">Item</th>
             <th className="table-head-name">Descrição</th>
-            <th>Quantidade</th>
-            <th>Valor unitário</th>
+            <th className="table-head">Quantidade</th>
+            <th className="table-head">Valor unitário</th>
             <th>Sub-total</th>
           </tr>
         </thead>
@@ -119,7 +119,7 @@ function SellerOrderDetail() {
                 }
                 className="price-table-item"
               >
-                { product.price }
+                { convertedValue(product.price) }
               </td>
               <td
                 data-testid={
@@ -140,7 +140,7 @@ function SellerOrderDetail() {
       >
         { convertedValue(totalPrice) }
       </h3>
-    </div>
+    </MainDiv>
   );
 }
 
