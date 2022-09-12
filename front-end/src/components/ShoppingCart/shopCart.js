@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { convertedValue } from '../services/utils';
+import { convertedValue } from '../../services/utils';
+import { ShoppCart } from './styles';
 
 function ShopCart() {
   const [shopCartValue, setShopCartValue] = useState(0);
@@ -22,7 +23,7 @@ function ShopCart() {
   }, [products]);
 
   return (
-    <div className="container-account-balance">
+    <ShoppCart>
       <button
         data-testid="customer_products__button-cart"
         onClick={ () => history.push('/customer/checkout') }
@@ -31,13 +32,13 @@ function ShopCart() {
       >
         Ver carrinho:
         {' '}
-        <div
+        <p
           data-testid="customer_products__checkout-bottom-value"
         >
           {convertedValue(shopCartValue)}
-        </div>
+        </p>
       </button>
-    </div>
+    </ShoppCart>
   );
 }
 

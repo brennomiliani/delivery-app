@@ -5,13 +5,15 @@ import usePath from '../../hooks/usePath';
 import { saveUser } from '../../redux/actions';
 import * as S from './styles';
 import { getUserAcessFromLocal } from '../../services/localStorage';
+import ReducedNavBar from './reducedNavBar';
 
 function NavBar() {
   const dispatch = useDispatch();
-  const [inSellerRoute, setInSellerRoute] = useState('false');
-  // const [inAdminRoute, setInAdminRoute] = useState(false);
+  const [inSellerRoute, setInSellerRoute] = useState(false);
+  const [inAdminRoute, setInAdminRoute] = useState(false);
   const { pathname } = usePath();
   const [userData, setUserData] = useState({ name: '', token: '' });
+  const [reducedScreen, setReducedScreen] = useState(window.screen.width <  579 ? true : false);
 
   const getLastUser = () => {
     const user = getUserAcessFromLocal();
@@ -26,9 +28,9 @@ function NavBar() {
     if (pathname.includes('/seller')) {
       setInSellerRoute(true);
     }
-    // if (pathname.includes('/admin')) {
-    //   setInAdminRoute(true);
-    // }
+    if (pathname.includes('/admin')) {
+      setInAdminRoute(true);
+    }
   };
 
   const logout = () => {
@@ -38,7 +40,19 @@ function NavBar() {
   useEffect(() => {
     dispatch(saveUser(getLastUser()));
     verifyRoute();
+    if (window.screen.width <  579) {
+      return setReducedScreen(true);
+    }
+    return setReducedScreen(false);
   }, []);
+
+  if (reducedScreen) {
+    const objInfos = { userData, inAdminRoute, inSellerRoute };
+    return (
+      <S.NavBarReduced>
+        <ReducedNavBar {...objInfos }/>
+      </S.NavBarReduced>)
+  }
 
   return (
     <S.NavBar className="nav container">
@@ -47,7 +61,7 @@ function NavBar() {
           <div className="nav-item">
 
             {
-              !inSellerRoute
+              !inSellerRoute && !inAdminRoute
             && (
               <Link
                 to="/customer/products"
@@ -61,13 +75,13 @@ function NavBar() {
           </div>
           <div className="nav-item">
             {
-              inSellerRoute
+              inSellerRoute || inAdminRoute
                 ? (
                   <Link
-                    to="/seller/orders"
+                    to={ inSellerRoute ? "/seller/orders" : "/admin/manage"}
                     data-testid="customer_products__element-navbar-link-orders"
                   >
-                    Pedidos
+                    { inSellerRoute ? "Pedidos" : "Gerenciar Usuários" }
                   </Link>
 
                 )

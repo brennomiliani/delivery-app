@@ -2,6 +2,7 @@ export default {
   colors: {
     background: '#232322',
     primary: {
+      colorBright: '#B68A04',
       fontInputColor: '#ffffff',
       borderColor: '#FFD933',
       disabledButtonBackground: '#C3C0B4',
