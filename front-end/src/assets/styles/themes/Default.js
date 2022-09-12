@@ -8,6 +8,8 @@ export const darkTheme = {
       disabledButtonBackground: '#C3C0B4',
       activeButtonBackground: '#B68A04',
       hoverButtonBackground: '#F0D971',
+      orderCardBackground: 'rgb(51, 51 ,68)',
+      greyTableCell: '#3D3B30',
     },
   },
   sizes: {
@@ -17,7 +19,7 @@ export const darkTheme = {
     smallfontSize: 'var(--small-font-size)',
     smallInputfontSize: 'var(--small-width)',
     buttonSize: 'var(--button-width)',
-  }
+  },
 };
 
 export const lightTheme = {

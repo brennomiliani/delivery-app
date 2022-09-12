@@ -105,6 +105,6 @@ export const CardProduct = styled.div`
 
     span{
         color: ${(props) => props
-        .theme.colors.primary.disabledButtonBackground};
+    .theme.colors.primary.disabledButtonBackground};
     } 
 `;
