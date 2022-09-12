@@ -1,3 +1,20 @@
+.toggle_theme {
+  background: #282a36;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toggle_theme button {
+  background: #ebdb07;
+  /* padding: 10px;
+  margin-bottom: 0; */
+  width: 100px;
+  text-align: center;
+  border-radius: 20px;
+}
+
+
 .App {
   align-items: center;
   background: #0fa36b;
