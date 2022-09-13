@@ -6,7 +6,7 @@ import NavBar from '../../components/NavBar/navBar';
 // import mockProducts from '../mocks/mockProducts';
 import { getShopCartFromLocal } from '../../services/localStorage';
 import { saveProducts } from '../../redux/actions';
-import ShopCart from '../../components/shopCart';
+import ShopCart from '../../components/ShoppingCart/shopCart';
 import { Main } from './styles';
 
 function Products() {

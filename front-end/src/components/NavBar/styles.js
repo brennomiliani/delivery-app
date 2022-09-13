@@ -1,5 +1,66 @@
 import styled from 'styled-components';
 
+export const NavBarReduced = styled.nav`
+
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  background: #282a36;
+  height: 50px;
+  padding: 5px;
+  box-shadow: 0 5px 10px 0 rgb(0 0 0 / 15%);
+
+  div.showLinks {
+    width: 90%;
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    div.container_user {
+      width: 15%;
+      flex-direction: row;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      
+      div.container_name {
+        /* width: 50px; */
+        /* height: 40px; */
+        padding: 5px 10px 5px 10px;
+        /* margin-right: 20px; */
+        text-align: center;
+        border-radius: 100%;
+        border: 1px solid yellow;
+      }
+    }
+  }
+
+  a { 
+    text-decoration: none;
+    transition: all .3s linear;
+    color: white;
+    text-underline-offset: 5px;
+    
+    
+    :hover, :active {
+      color: ${(props) => props.theme.colors.primary.borderColor};
+      text-decoration: underline;
+    }
+
+  }
+
+  div {
+    div {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+`;
+
 export const NavBar = styled.nav`
   width: 100%;
   display: flex;

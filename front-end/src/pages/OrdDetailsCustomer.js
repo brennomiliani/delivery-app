@@ -110,4 +110,3 @@ function OrderDetailsCustomer() {
 }
 
 export default OrderDetailsCustomer;
-// aiai

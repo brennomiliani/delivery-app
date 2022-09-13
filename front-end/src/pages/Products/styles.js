@@ -78,7 +78,7 @@ export const CardProduct = styled.div`
     }
 
     input {
-      max-width: ${(props) => props.theme.sizes.smallfontSize};;
+      width: ${(props) => props.theme.sizes.smallInputfontSize};
       height: 40px;
       margin: 0px 0px 15px;
       background-color: transparent;
