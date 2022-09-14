@@ -13,6 +13,25 @@ export const ProductsTable = styled.table`
   color: #000000;
   background-color: #ffffff;
 
+  button {
+      width: 200px;
+      transition: all .3s ease-in-out;
+      background: #50fa7b;
+      border-radius: 4px;
+      text-align: center;
+      color: #000;
+      padding: 10px 18px;
+      font-size: 16px;
+      border: none;
+      margin-bottom: 10px;
+
+    :hover {
+      color: #000;
+      text-decoration: none;
+      background: rgba(80,250,123,.8);
+    }
+    }
+
   thead{
     border-radius: 8px;
 
@@ -80,4 +99,5 @@ export const ProductsTable = styled.table`
       }
     }
   }
+  
 `;
