@@ -10,23 +10,25 @@ function CustomerOrderCard(item) {
     <Link to={ `orders/${id}` }>
       <OrderCard>
         <div className="order-container">
-        <div>
-          <h3>Pedido</h3>
-          <h3 data-testid={ `customer_orders__element-order-id-${id}` }>{ id }</h3>
-        </div>
-        <h3 data-testid={ `customer_orders__element-delivery-status-${id}` }>{ status }</h3>
-        <div>
-          <h3
-            data-testid={ `customer_orders__element-order-date-${id}` }
-          >
-            { formatDate(saleDate) }
-          </h3>
+          <div className="container-id-card">
+            <h3>Pedido</h3>
+            <h3 data-testid={ `customer_orders__element-order-id-${id}` }>{ id }</h3>
+          </div>
+          <div className="container-status-card">
+            <h3 data-testid={ `customer_orders__element-delivery-status-${id}` }>{ status }</h3>
+          </div>
+          <div className="container-info-card">
+            <h3
+              data-testid={ `customer_orders__element-order-date-${id}` }
+            >
+              { formatDate(saleDate) }
+            </h3>
+          </div>
           <h3
             data-testid={ `customer_orders__element-card-price-${id}` }
           >
             { convertedValue(totalPrice) }
           </h3>
-        </div>
         </div>
       </OrderCard>
     </Link>
