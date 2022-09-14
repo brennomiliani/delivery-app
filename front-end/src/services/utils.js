@@ -5,7 +5,7 @@ export const convertedValue = (value) => new Intl
 export const formatDate = (date) => `${new Date(date)
   .getDate().length === 2
   ? new Date(date).getDate()
-  : `0${new Date(date)
+  : `${new Date(date)
     .getDate()}`}/${new Date(date).getMonth()
   .length === 2 ? new Date(date).getMonth() : `0${new Date(date)
     .getMonth() + 1}`}/${new Date(date).getFullYear()}`;

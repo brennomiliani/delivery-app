@@ -19,6 +19,8 @@ export const darkTheme = {
     smallfontSize: 'var(--small-font-size)',
     smallInputfontSize: 'var(--small-width)',
     buttonSize: 'var(--button-width)',
+    cardSize: 'var(--card-width)',
+
   },
   flexDirection: 'var(--directionDefault)'
 };

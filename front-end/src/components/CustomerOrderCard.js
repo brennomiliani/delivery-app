@@ -23,13 +23,14 @@ function CustomerOrderCard(item) {
             >
               { formatDate(saleDate) }
             </h3>
-          <h3
-            data-testid={ `customer_orders__element-card-price-${id}` }
-            >
-            { convertedValue(totalPrice) }
-          </h3>
+          
+            <h3
+              data-testid={ `customer_orders__element-card-price-${id}` }
+              >
+              { convertedValue(totalPrice) }
+            </h3>
+          </div>
         </div>
-            </div>
       </OrderCard>
     </Link>
   );

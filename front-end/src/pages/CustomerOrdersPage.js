@@ -3,6 +3,7 @@ import axios from 'axios';
 import CustomerOrderCard from '../components/CustomerOrderCard';
 import NavBar from '../components/NavBar/navBar';
 import { getUserAcessFromLocal } from '../services/localStorage';
+import { MainContainer } from '../components/shared/OrderCard';
 
 function CustomerOrdersPage() {
   const [customerOrders, setCustomerOrders] = useState([]);
@@ -28,10 +29,10 @@ function CustomerOrdersPage() {
         ? <h3>Carregando...</h3>
         : (
           <section>
-            <div>
+            <MainContainer>
               { customerOrders.map((item, index) => (
                 <CustomerOrderCard key={ index } { ...item } />))}
-            </div>
+           </MainContainer>
           </section>)}
     </div>
   );

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import NavBar from '../components/NavBar/navBar';
-import usePath from '../hooks/usePath';
-import { getUserAcessFromLocal } from '../services/localStorage';
-import { convertedValue, formatDate } from '../services/utils';
-import { ProductsTable, MainDiv } from '../components/shared/ProductsTable';
+import NavBar from '../../components/NavBar/navBar';
+import usePath from '../../hooks/usePath';
+import { getUserAcessFromLocal } from '../../services/localStorage';
+import { convertedValue, formatDate } from '../../services/utils';
+import { ProductsTable } from '../../components/shared/ProductsTable';
+import * as S from './style'
 
 function SellerOrderDetail() {
   const [order, setOrder] = useState({
@@ -38,10 +39,12 @@ function SellerOrderDetail() {
   const { saleDate, products, totalPrice } = order;
 
   return (
-    <MainDiv>
-      <NavBar />
-      <section>
-        <h2>Detalhes do Pedido</h2>
+    <div>
+    <NavBar />
+    <S.SellerOrderDetails>
+      <h1>Detalhes do Pedido</h1>
+      <main>
+        <div className='order-details'>
         <h3
           data-testid="seller_order_details__element-order-details-label-order-id"
         >
@@ -50,7 +53,7 @@ function SellerOrderDetail() {
         <h3
           data-testid="seller_order_details__element-order-details-label-order-date"
         >
-          { formatDate(saleDate) }
+          { `Data: ${formatDate(saleDate)}` }
         </h3>
         <h3
           data-testid="seller_order_details__element-order-details-label-delivery-status"
@@ -75,7 +78,7 @@ function SellerOrderDetail() {
         >
           Saiu para Entrega
         </button>
-      </section>
+        </div>
       <ProductsTable>
         <thead>
           <tr>
@@ -140,7 +143,9 @@ function SellerOrderDetail() {
       >
         { convertedValue(totalPrice) }
       </h3>
-    </MainDiv>
+      </main>
+    </S.SellerOrderDetails>
+    </div>
   );
 }
 
