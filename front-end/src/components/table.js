@@ -4,6 +4,7 @@ import { rmShopCart } from '../redux/actions';
 import { removeProductToLocal } from '../services/localStorage';
 import { convertedValue } from '../services/utils';
 import usePath from '../hooks/usePath';
+import { ProductsTable } from './shared/ProductsTable';
 
 const CHECKOUT_PREFIX = 'customer_checkout__element-order-table';
 
@@ -25,13 +26,13 @@ function TableProdCart() {
   }, [products]);
 
   return (
-    <table>
+    <ProductsTable>
       <thead>
         <tr>
-          <th>Item</th>
-          <th>Descrição</th>
-          <th>Quantidade</th>
-          <th>Valor unitário</th>
+          <th className="table-head">Item</th>
+          <th className="table-head-name">Descrição</th>
+          <th className="table-head">Quantidade</th>
+          <th className="table-head">Valor unitário</th>
           <th>Subtotal</th>
           { inCheckout
             && <th>Excluir</th>}
@@ -47,6 +48,7 @@ function TableProdCart() {
                     ? `${CHECKOUT_PREFIX}-item-number-${index}`
                     : `customer_order_details__element-order-table-item-number-${index}`
                 }
+                className="index-table-item"
               >
                 {index + 1}
               </td>
@@ -56,6 +58,7 @@ function TableProdCart() {
                     ? `${CHECKOUT_PREFIX}-name-${index}`
                     : `customer_order_details__element-order-table-name-${index}`
                 }
+                className="name-table-item"
               >
                 {name}
               </td>
@@ -65,6 +68,7 @@ function TableProdCart() {
                     ? `${CHECKOUT_PREFIX}-quantity-${index}`
                     : `customer_order_details__element-order-table-quantity-${index}`
                 }
+                className="quantity-table-item"
               >
                 {quantity}
               </td>
@@ -74,6 +78,7 @@ function TableProdCart() {
                     ? `${CHECKOUT_PREFIX}-unit-price-${index}`
                     : `customer_order_details__element-order-table-sub-total-${index}`
                 }
+                className="price-table-item"
               >
                 {convertedValue(price)}
               </td>
@@ -83,6 +88,7 @@ function TableProdCart() {
                     ? `${CHECKOUT_PREFIX}-sub-total-${index}`
                     : `customer_order_details__element-order-total-price-${index}`
                 }
+                className="total-table-item"
               >
                 {convertedValue(Number(price) * Number(quantity))}
               </td>
@@ -109,7 +115,7 @@ function TableProdCart() {
             </tr>
           ))}
       </tbody>
-    </table>
+    </ProductsTable>
   );
 }
 

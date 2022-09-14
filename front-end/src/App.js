@@ -8,7 +8,7 @@ import SellerOrdersPage from './pages/SellerOrdersPage';
 import SellerOrderDetail from './pages/SellerOrderDetail';
 import CustomerOrdersPage from './pages/CustomerOrdersPage';
 import Checkout from './pages/CheckoutCustomer/CheckoutCustomer';
-import OrderDetailsCustomer from './pages/OrdDetailsCustomer';
+import OrderDetailsCustomer from './pages/OrdDetailsCustomer/OrdDetailsCustomer';
 import Admin from './pages/Admin';
 import './App.css';
 import  { lightTheme, darkTheme } from './assets/styles/themes/Default';
