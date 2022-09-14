@@ -15,17 +15,17 @@ import  { lightTheme, darkTheme } from './assets/styles/themes/Default';
 import GlobalStyles from './assets/styles/Global';
 
 function App() {
-  const [theme, setTheme] = useState('light');
+  // const [theme, setTheme] = useState('light');
 
-  const themeToggler = () => {
-    theme === 'light' ? setTheme('dark') : setTheme('light')
-  }
+  // const themeToggler = () => {
+  //   theme === 'light' ? setTheme('dark') : setTheme('light')
+  // }
 
   return (
-    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-      <div className="toggle_theme">
+    <ThemeProvider theme={darkTheme}>
+      {/* <div className="toggle_theme">
           <button onClick={themeToggler}>Trocar tema</button>
-      </div>
+      </div> */}
       <Switch>
         <Route exact path="/" render={ () => <Redirect to="/login" /> } />
         <Route path="/login" component={ Login } />

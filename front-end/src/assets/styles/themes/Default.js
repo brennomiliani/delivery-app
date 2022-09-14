@@ -20,6 +20,7 @@ export const darkTheme = {
     smallInputfontSize: 'var(--small-width)',
     buttonSize: 'var(--button-width)',
   },
+  flexDirection: 'var(--directionDefault)'
 };
 
 export const lightTheme = {
@@ -45,4 +46,5 @@ export const lightTheme = {
   },
   text: '#363537',
   toggleBorder: '#FFF',
+  flexDirection: 'var(--directionDefault)',
 }

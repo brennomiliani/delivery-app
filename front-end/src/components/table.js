@@ -33,9 +33,9 @@ function TableProdCart() {
           <th className="table-head-name">Descrição</th>
           <th className="table-head">Quantidade</th>
           <th className="table-head">Valor unitário</th>
-          <th>Subtotal</th>
+          <th className='table-head-name'>Subtotal</th>
           { inCheckout
-            && <th>Excluir</th>}
+            && <th className='remove-table-item'>Excluir</th>}
         </tr>
       </thead>
       <tbody>
@@ -43,58 +43,59 @@ function TableProdCart() {
           .map(({ name, price, id, SaleProduct: { quantity } }, index) => (
             <tr key={ id }>
               <td
+                className="index-table-item"
                 data-testid={
                   inCheckout
                     ? `${CHECKOUT_PREFIX}-item-number-${index}`
                     : `customer_order_details__element-order-table-item-number-${index}`
                 }
-                className="index-table-item"
               >
                 {index + 1}
               </td>
               <td
+                className="name-table-item"
                 data-testid={
                   inCheckout
                     ? `${CHECKOUT_PREFIX}-name-${index}`
                     : `customer_order_details__element-order-table-name-${index}`
                 }
-                className="name-table-item"
               >
                 {name}
               </td>
               <td
+              className="quantity-table-item"
                 data-testid={
                   inCheckout
                     ? `${CHECKOUT_PREFIX}-quantity-${index}`
                     : `customer_order_details__element-order-table-quantity-${index}`
                 }
-                className="quantity-table-item"
               >
                 {quantity}
               </td>
               <td
+                className="price-table-item"
                 data-testid={
                   inCheckout
                     ? `${CHECKOUT_PREFIX}-unit-price-${index}`
                     : `customer_order_details__element-order-table-sub-total-${index}`
                 }
-                className="price-table-item"
               >
                 {convertedValue(price)}
               </td>
               <td
+                className="total-table-item"
                 data-testid={
                   inCheckout
                     ? `${CHECKOUT_PREFIX}-sub-total-${index}`
                     : `customer_order_details__element-order-total-price-${index}`
                 }
-                className="total-table-item"
               >
                 {convertedValue(Number(price) * Number(quantity))}
               </td>
               { inCheckout
                 && (
                   <td
+                  className='remove-table-item'
                     data-testid={ `${CHECKOUT_PREFIX}-remove-
                   ${index}` }
                   >

@@ -10,7 +10,7 @@ export const ProductsTable = styled.table`
   border-collapse: separate;
   border-spacing: 0px 10px;
   border-radius: 8px;
-
+  color: #000000;
   background-color: #ffffff;
 
   thead{
@@ -66,6 +66,18 @@ export const ProductsTable = styled.table`
 
       background-color: #000000;
       color: #FFFFFF;
+    }
+
+    td.remove-table-item{
+
+      button {
+        background-color: rgba(255, 100, 0, 0.5);
+        height: 35px;
+        border: 1px solid rgb(255, 0, 0);
+        box-shadow: rgba(0, 0, 0, 0.35) 2px 2px 2px 0px;
+        border-radius: 8px 8px 8px 8px;
+        padding: 10px 20px;
+      }
     }
   }
 `;

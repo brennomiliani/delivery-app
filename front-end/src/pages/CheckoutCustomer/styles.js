@@ -22,7 +22,7 @@ export const Checkout = styled.div`
   }
 
   div.end-order-container {
-    width: 100;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -34,8 +34,9 @@ export const Checkout = styled.div`
     
     form {
       width: 100%;
+      flex-direction: ${(props) => props.theme.flexDirection};
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       border-radius: 3px;
       margin-bottom: 10px;
