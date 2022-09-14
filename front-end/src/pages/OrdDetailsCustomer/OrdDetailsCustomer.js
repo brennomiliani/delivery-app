@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { saveProducts } from '../redux/actions';
-import TableProdCart from '../components/table';
-import { convertedValue, formatDate } from '../services/utils';
-import usePath from '../hooks/usePath';
-import NavBar from '../components/NavBar/navBar';
-import { getUserAcessFromLocal } from '../services/localStorage';
+import { saveProducts } from '../../redux/actions';
+import TableProdCart from '../../components/table';
+import { convertedValue, formatDate } from '../../services/utils';
+import usePath from '../../hooks/usePath';
+import NavBar from '../../components/NavBar/navBar';
+import { getUserAcessFromLocal } from '../../services/localStorage';
+import * as S from './styles'
 
 function OrderDetailsCustomer() {
   const [totalValue, setTotalValue] = useState(0);
@@ -58,26 +59,25 @@ function OrderDetailsCustomer() {
   return (
     <div className="general-page">
       <NavBar />
+      <S.OrderDetailsCustomer>
       <h1>Detalhes do Pedido</h1>
+        <main>
 
-      <div>
-        <h3
+        <div className='order-details'>
+        <h2
           data-testid={
             `customer_order_details__element-order-details-label-order-id-${id}`
           }
         >
-          Pedido:
-          { id }
-        </h3>
+          Pedido: { id }
+        </h2>
         <h2
           data-testid="customer_order_details__element-order-details-label-seller-name"
         >
-          P.Vendedora:
-          { dataOrder.seller.name }
+          P.Vendedora: { dataOrder.seller.name }
         </h2>
         <h2 data-testid="customer_order_details__element-order-details-label-order-date">
-          Data:
-          { formatDate(dataOrder.saleDate) }
+          Data: { formatDate(dataOrder.saleDate) }
         </h2>
         <h2
           data-testid={ `${prefix}__element-order-details-label-delivery-status` }
@@ -93,18 +93,22 @@ function OrderDetailsCustomer() {
         >
           Marcar como entregue
         </button>
-      </div>
+        </div>
+
 
       <TableProdCart />
       <div>
         <span
           data-testid="customer_order_details__element-order-total-price"
-        >
+          >
           Total:
           {' '}
           { convertedValue(totalValue) }
         </span>
       </div>
+      </main>
+
+      </S.OrderDetailsCustomer>
     </div>
   );
 }

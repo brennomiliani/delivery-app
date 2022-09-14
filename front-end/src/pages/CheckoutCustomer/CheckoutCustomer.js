@@ -8,6 +8,7 @@ import TableProdCart from '../../components/table';
 import * as S from './styles';
 import { convertedValue } from '../../services/utils';
 import CardAdress from '../../components/cardAdress';
+import { Redirect } from 'react-router-dom';
 
 function Checkout() {
   const [totalValue, setTotalValue] = useState(0);

@@ -22,6 +22,13 @@ module.exports = {
         role: 'customer',
         // - senha: md5('$#zebirita#$')
       },
+      {
+        name: 'generic seller',
+        email: 'seller@email.com',
+        password: '9d398fecedf2cc738da36210e377e7cb',
+        role: 'seller',
+        // - senha: md5('$#zebirita#$')
+      },
     ], {});
   },
 
