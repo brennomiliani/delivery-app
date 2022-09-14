@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import NavBar from '../components/navBar';
-import { getShopCartFromLocal } from '../services/localStorage';
-import { rmShopCart, saveProducts } from '../redux/actions';
-import TableProdCart from '../components/table';
-import { convertedValue } from '../services/utils';
-import CardAdress from '../components/cardAdress';
+import NavBar from '../../components/NavBar/navBar';
+import { getShopCartFromLocal } from '../../services/localStorage';
+import { rmShopCart, saveProducts } from '../../redux/actions';
+import TableProdCart from '../../components/table';
+import * as S from './styles';
+import { convertedValue } from '../../services/utils';
+import CardAdress from '../../components/cardAdress';
 
 function Checkout() {
   const [totalValue, setTotalValue] = useState(0);
   const [productsStor, setProductsStor] = useState([]);
+  const [redirect, setRedirect] = useState(0);
 
   const { removedItem } = useSelector((state) => state.products);
   const user = useSelector((state) => state.user);
 
-  const history = useHistory();
   const dispatch = useDispatch();
 
   const getProductsStored = () => {
@@ -61,40 +61,49 @@ function Checkout() {
     );
     localStorage.removeItem('carrinho');
     dispatch(saveProducts([]));
+    setRedirect(response.data.saleId);
     // navigate(`/customer/orders/${response.data.saleId}`);
-    history.push(`/customer/orders/${response.data.saleId}`);
-    // return <Redirect to={ `/customer/orders/${response.data.saleId}` } />;
+    // history.push(`/customer/orders/${response.data.saleId}`);
     // }
   };
+  if (redirect) {
+    return <Redirect to={ `/customer/orders/${redirect}` } />;
+  }
 
   return (
-    <div className="general-page">
+    <>
       <NavBar />
-      <TableProdCart />
-      <div>
-        <span
-          data-testid="customer_checkout__element-order-total-price"
-        >
-          Total:
-          {' '}
-          { convertedValue(totalValue) }
-        </span>
-      </div>
+      <S.Checkout>
+        <TableProdCart />
+        <div>
+          <span
+            data-testid="customer_checkout__element-order-total-price"
+          >
+            Total:
+            {' '}
+            { convertedValue(totalValue) }
+          </span>
+        </div>
 
-      <CardAdress />
+        <section>
+          <h3>Detalhes e Endereço para Entrega</h3>
+          <div className="end-order-container">
 
-      <div className="section-btns">
-        <button
-          type="button"
-          onClick={ () => saveOrder() }
-          data-testid="customer_checkout__button-submit-order"
-          className="button-general button--flex"
-          disabled={ (totalValue <= 0) }
-        >
-          Finalizar Pedido
-        </button>
-      </div>
-    </div>
+            <CardAdress />
+
+            <button
+              type="button"
+              onClick={ () => saveOrder() }
+              data-testid="customer_checkout__button-submit-order"
+              className="button-general button--flex"
+              disabled={ (totalValue <= 0) }
+            >
+              Finalizar Pedido
+            </button>
+          </div>
+        </section>
+      </S.Checkout>
+    </>
   );
 }
 

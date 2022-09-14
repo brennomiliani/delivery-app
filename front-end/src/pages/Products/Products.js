@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import Card from '../components/card';
-import NavBar from '../components/navBar';
+import Card from '../../components/card';
+import NavBar from '../../components/NavBar/navBar';
 // import mockProducts from '../mocks/mockProducts';
-import { getShopCartFromLocal } from '../services/localStorage';
-import { saveProducts } from '../redux/actions';
-import ShopCart from '../components/shopCart';
+import { getShopCartFromLocal } from '../../services/localStorage';
+import { saveProducts } from '../../redux/actions';
+import ShopCart from '../../components/ShoppingCart/shopCart';
+import { Main } from './styles';
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -33,17 +34,17 @@ function Products() {
   }, [dispatch]);
 
   return (
-    <div className="general-page">
+    <div>
       <NavBar />
       <ShopCart />
       { !products.length
         ? <h3 className="h3-title">Carregando...</h3>
         : (
           <section>
-            <div>
+            <Main>
               { products.map((item) => (
                 <Card key={ item.id } { ...item } />))}
-            </div>
+            </Main>
           </section>)}
     </div>
   );

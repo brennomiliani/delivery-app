@@ -4,6 +4,7 @@ import { rmShopCart } from '../redux/actions';
 import { removeProductToLocal } from '../services/localStorage';
 import { convertedValue } from '../services/utils';
 import usePath from '../hooks/usePath';
+import { ProductsTable } from './shared/ProductsTable';
 
 const CHECKOUT_PREFIX = 'customer_checkout__element-order-table';
 
@@ -25,16 +26,16 @@ function TableProdCart() {
   }, [products]);
 
   return (
-    <table>
+    <ProductsTable>
       <thead>
         <tr>
-          <th>Item</th>
-          <th>Descrição</th>
-          <th>Quantidade</th>
-          <th>Valor unitário</th>
-          <th>Subtotal</th>
+          <th className="table-head">Item</th>
+          <th className="table-head-name">Descrição</th>
+          <th className="table-head">Quantidade</th>
+          <th className="table-head">Valor unitário</th>
+          <th className='table-head-name'>Subtotal</th>
           { inCheckout
-            && <th>Excluir</th>}
+            && <th className='remove-table-item'>Excluir</th>}
         </tr>
       </thead>
       <tbody>
@@ -42,6 +43,7 @@ function TableProdCart() {
           .map(({ name, price, id, SaleProduct: { quantity } }, index) => (
             <tr key={ id }>
               <td
+                className="index-table-item"
                 data-testid={
                   inCheckout
                     ? `${CHECKOUT_PREFIX}-item-number-${index}`
@@ -51,6 +53,7 @@ function TableProdCart() {
                 {index + 1}
               </td>
               <td
+                className="name-table-item"
                 data-testid={
                   inCheckout
                     ? `${CHECKOUT_PREFIX}-name-${index}`
@@ -60,6 +63,7 @@ function TableProdCart() {
                 {name}
               </td>
               <td
+              className="quantity-table-item"
                 data-testid={
                   inCheckout
                     ? `${CHECKOUT_PREFIX}-quantity-${index}`
@@ -69,6 +73,7 @@ function TableProdCart() {
                 {quantity}
               </td>
               <td
+                className="price-table-item"
                 data-testid={
                   inCheckout
                     ? `${CHECKOUT_PREFIX}-unit-price-${index}`
@@ -78,6 +83,7 @@ function TableProdCart() {
                 {convertedValue(price)}
               </td>
               <td
+                className="total-table-item"
                 data-testid={
                   inCheckout
                     ? `${CHECKOUT_PREFIX}-sub-total-${index}`
@@ -89,6 +95,7 @@ function TableProdCart() {
               { inCheckout
                 && (
                   <td
+                  className='remove-table-item'
                     data-testid={ `${CHECKOUT_PREFIX}-remove-
                   ${index}` }
                   >
@@ -109,7 +116,7 @@ function TableProdCart() {
             </tr>
           ))}
       </tbody>
-    </table>
+    </ProductsTable>
   );
 }
 

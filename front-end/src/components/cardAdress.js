@@ -32,7 +32,9 @@ function CardAdress() {
     <form className="container-account-balance">
       <div>
         <label htmlFor="seller">
-          P.Vendedora Responsável
+          <p>
+            P.Vendedora Responsável
+          </p>
           <select
             data-testid="customer_checkout__select-seller"
             id="seller"
@@ -55,9 +57,11 @@ function CardAdress() {
           </select>
         </label>
       </div>
-      <div>
+      <div className="address-container">
         <label htmlFor="address">
-          Endereço
+          <p>
+            Endereço
+          </p>
           <input
             name="deliveryAddress"
             type="text"
@@ -69,9 +73,11 @@ function CardAdress() {
         </label>
       </div>
 
-      <div>
+      <div className="number-container">
         <label htmlFor="number">
-          Número
+          <p>
+            Número
+          </p>
           <input
             name="deliveryNumber"
             type="text"

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { saveProducts } from '../redux/actions';
 import TableProdCart from '../components/table';
 import { convertedValue, formatDate } from '../services/utils';
 import usePath from '../hooks/usePath';
-import NavBar from '../components/navBar';
+import NavBar from '../components/NavBar/navBar';
 import { getUserAcessFromLocal } from '../services/localStorage';
 
 function OrderDetailsCustomer() {
@@ -15,15 +15,13 @@ function OrderDetailsCustomer() {
     saleDate: '',
     id: '',
     status: '' });
-  const user = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
   const { id } = usePath();
 
-  const getProductsOrder = async () => {
+  const getProductsOrder = async (userInfo) => {
     try {
-      const result = await axios.get(`http://localhost:3001/customer/orders/${id}`, { headers: { Authorization: user.token } });
-      console.log('aaaaaaaaa', result);
+      const result = await axios.get(`http://localhost:3001/customer/orders/${id}`, { headers: { Authorization: userInfo.token } });
       if (result) {
         setDataOrder(result.data);
         setTotalValue(0);
@@ -50,8 +48,10 @@ function OrderDetailsCustomer() {
   };
 
   useEffect(() => {
-    getProductsOrder();
+    const user = getUserAcessFromLocal();
+    getProductsOrder(user);
   }, []);
+
 
   const prefix = 'customer_order_details';
 
@@ -110,4 +110,3 @@ function OrderDetailsCustomer() {
 }
 
 export default OrderDetailsCustomer;
-// aiai

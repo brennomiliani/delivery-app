@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CustomerOrderCard from '../components/CustomerOrderCard';
-import NavBar from '../components/navBar';
+import NavBar from '../components/NavBar/navBar';
 import { getUserAcessFromLocal } from '../services/localStorage';
 
 function CustomerOrdersPage() {

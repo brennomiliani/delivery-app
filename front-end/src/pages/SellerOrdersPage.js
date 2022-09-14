@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import SellerOrderCard from '../components/SellerOrderCard';
-import NavBar from '../components/navBar';
+import NavBar from '../components/NavBar/navBar';
 import { getUserAcessFromLocal } from '../services/localStorage';
+import { MainContainer } from '../components/shared/OrderCard';
 
 function SellerOrdersPage() {
   const [orders, setOrders] = useState([]);
@@ -21,6 +22,8 @@ function SellerOrdersPage() {
     getAllOrders();
   }, []);
 
+  // const style = { display: 'flex', height: '200px' };
+
   return (
     <div>
       <NavBar />
@@ -28,10 +31,10 @@ function SellerOrdersPage() {
         ? <h3>Carregando...</h3>
         : (
           <section>
-            <div>
-              { orders.map((item, index) => (
+            <MainContainer>
+              {orders.map((item, index) => (
                 <SellerOrderCard key={ index } { ...item } />))}
-            </div>
+            </MainContainer>
           </section>)}
     </div>
   );

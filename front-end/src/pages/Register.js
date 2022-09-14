@@ -59,7 +59,7 @@ function SignIn() {
             onChange={ handleInput }
             value={ inputName }
             name="inputName"
-            placeholder="Nome Completo(mínimo 12 caracteres)"
+            placeholder="Nome (mínimo 12 caracteres)"
           />
           <input
             type="text"

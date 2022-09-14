@@ -11,7 +11,6 @@ form {
     align-items: center;
 
     input {
-      width: 30%;
       height: 40px;
       margin: 0px 0px 15px;
       outline: none;
@@ -37,17 +36,15 @@ form {
       }
     }
 
-    button {
+  button {
       background-color: ${(props) => props.theme.colors.primary.borderColor};
       color: #000000;
-      height: 45px;
-      width: 15%;
+      height: 35px;
+      width: ${(props) => props.theme.sizes.buttonSize};
       font-weight: bold;
       font-size: 18px;
       transition: all 0.3s ease-in-out;
-      margin-bottom: 10px;
       margin-top: 10px;
-      border-radius: 8px;
 
       :disabled{
         background-color: ${(props) => props
@@ -74,13 +71,14 @@ form {
   }
 }
 
-h1 {
+  h1 {
     color: ${(props) => props.theme.colors.primary.borderColor};
     font-size: 40px;
     justify-content: center;
     align-items: center;
     display: flex;
     margin-bottom: 40px;
+    text-align: center;
   }
 `;
 

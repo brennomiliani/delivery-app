@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { CardProduct } from '../pages/Products/styles';
 import { addToShopCart, editShopCart, rmShopCart } from '../redux/actions';
 import { convertedValue } from '../services/utils';
 
@@ -18,9 +19,6 @@ function Card(product) {
       dispatch(addToShopCart(objProd));
       return;
     }
-    // if (!value) {
-    //   return;
-    // }
     dispatch(editShopCart(objProd));
     dispatch(rmShopCart(true));
   };
@@ -34,9 +32,8 @@ function Card(product) {
   }, [id, productsStored]);
 
   return (
-    <div className="card_data">
+    <CardProduct>
       <h3
-        className="card_title"
         data-testid={ `customer_products__element-card-title-${id}` }
       >
         { name }
@@ -44,12 +41,9 @@ function Card(product) {
       <img
         src={ urlImage }
         alt={ name }
-        style={ { height: '20%', width: '20%' } }
-        className="card_description"
         data-testid={ `customer_products__img-card-bg-image-${id}` }
       />
       <p
-        className="card_description"
         data-testid={ `customer_products__element-card-price-${id}` }
       >
         { convertedValue(Number(price)) }
@@ -57,7 +51,6 @@ function Card(product) {
       <div>
         <button
           type="button"
-          className="button--small button-color-general"
           data-testid={ `customer_products__button-card-rm-item-${id}` }
           disabled={ (valueAdd <= 0) }
           onClick={ () => {
@@ -80,7 +73,6 @@ function Card(product) {
         />
         <button
           type="button"
-          className="button--small"
           data-testid={ `customer_products__button-card-add-item-${id}` }
           onClick={ () => {
             setValueAdd((valueAdd + 1));
@@ -90,7 +82,7 @@ function Card(product) {
           +
         </button>
       </div>
-    </div>
+    </CardProduct>
   );
 }
 
