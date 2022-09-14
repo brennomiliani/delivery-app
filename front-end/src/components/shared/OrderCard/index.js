@@ -10,7 +10,7 @@ export const MainContainer = styled.div`
 export const OrderCard = styled.div`
   div.order-container{
     display: flex;
-    width: 500px;
+    width: ${(props) => props.theme.sizes.cardSize};
     height: 130px;
     margin: 20px;
 

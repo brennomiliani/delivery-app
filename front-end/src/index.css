@@ -59,6 +59,7 @@ a {
   --button-width: 200px;
 
   --directionDefault: column;
+  --card-width: 350px;
 }
 
 @media screen and (min-width: 768px) {
@@ -74,5 +75,6 @@ a {
       --small-width: 60px;
 
       --directionDefault: row;
+      ----card-width: 500px;
   }
 }
